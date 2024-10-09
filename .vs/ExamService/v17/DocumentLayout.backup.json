@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\huhuh\\source\\repos\\ExamService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\huhuh\\source\\repos\\examservice\\examservice\\examservice\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\examservice\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\huhuh\\source\\repos\\examservice\\examservice\\examservice\\models\\question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\examservice\\models\\question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Question.cs",
+              "DocumentMoniker": "C:\\Users\\huhuh\\source\\repos\\ExamService\\ExamService\\ExamService\\Models\\Question.cs",
+              "RelativeDocumentMoniker": "ExamService\\ExamService\\Models\\Question.cs",
+              "ToolTip": "C:\\Users\\huhuh\\source\\repos\\ExamService\\ExamService\\ExamService\\Models\\Question.cs",
+              "RelativeToolTip": "ExamService\\ExamService\\Models\\Question.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T08:37:47.761Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "QuestionController.cs",
+              "DocumentMoniker": "C:\\Users\\huhuh\\source\\repos\\ExamService\\ExamService\\ExamService\\Controllers\\QuestionController.cs",
+              "RelativeDocumentMoniker": "ExamService\\ExamService\\Controllers\\QuestionController.cs",
+              "ToolTip": "C:\\Users\\huhuh\\source\\repos\\ExamService\\ExamService\\ExamService\\Controllers\\QuestionController.cs",
+              "RelativeToolTip": "ExamService\\ExamService\\Controllers\\QuestionController.cs",
+              "ViewState": "AgIAAOsAAAAAAAAAAAAuwPYAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T08:34:30.025Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
