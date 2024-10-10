@@ -1,6 +1,6 @@
-﻿using ToeicWeb.Server.ExamService.Interfaces;
+﻿using ToeicWeb.ExamService.ExamService.Interfaces;
 
-namespace ExamService.ExamService.Repository
+namespace ToeicWeb.ExamService.ExamService.Repository
 {
     public class AnswerRepository : IAnswerRespository
     {

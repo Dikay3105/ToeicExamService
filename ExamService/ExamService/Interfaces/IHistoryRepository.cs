@@ -1,6 +1,6 @@
-﻿using ToeicWeb.Server.ExamService.Models;
+﻿using ToeicWeb.ExamService.ExamService.Models;
 
-namespace ToeicWeb.Server.ExamService.Interfaces
+namespace ToeicWeb.ExamService.ExamService.Interfaces
 {
     public interface IHistoryRepository
     {

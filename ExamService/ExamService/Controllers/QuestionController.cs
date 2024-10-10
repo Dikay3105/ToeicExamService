@@ -1,11 +1,11 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Mvc;
-using ToeicWeb.Server.ExamService.Data;
-using ToeicWeb.Server.ExamService.Interfaces;
-using ToeicWeb.Server.ExamService.Models;
+using ToeicWeb.ExamService.ExamService.Data;
+using ToeicWeb.ExamService.ExamService.Interfaces;
+using ToeicWeb.ExamService.ExamService.Models;
 
-namespace ToeicWeb.Server.ExamService.Controllers
+namespace ToeicWeb.ExamService.ExamService.Controllers
 {
     [Route("/api/[controller]")]
     [ApiController]

@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ToeicWeb.Server.ExamService.Data;
-using ToeicWeb.Server.ExamService.Interfaces;
-using ToeicWeb.Server.ExamService.Models;
+using ToeicWeb.ExamService.ExamService.Data;
+using ToeicWeb.ExamService.ExamService.Interfaces;
+using ToeicWeb.ExamService.ExamService.Models;
 
-namespace ToeicWeb.Server.ExamService.Repository
+namespace ToeicWeb.ExamService.ExamService.Repository
 {
     public class TestRepository : ITestRepository
     {

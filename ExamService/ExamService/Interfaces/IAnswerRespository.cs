@@ -1,4 +1,4 @@
-﻿namespace ToeicWeb.Server.ExamService.Interfaces
+﻿namespace ToeicWeb.ExamService.ExamService.Interfaces
 {
     public interface IAnswerRespository
     {

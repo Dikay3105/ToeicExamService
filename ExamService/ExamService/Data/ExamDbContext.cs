@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ToeicWeb.Server.ExamService.Models;
+using ToeicWeb.ExamService.ExamService.Models;
 
-namespace ToeicWeb.Server.ExamService.Data
+namespace ToeicWeb.ExamService.ExamService.Data
 {
     public class ExamDbContext : DbContext
     {
@@ -20,21 +20,11 @@ namespace ToeicWeb.Server.ExamService.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Answer>()
-                .HasKey(a => a.Id);
-            modelBuilder.Entity<History>()
-                .HasKey(h => h.Id);
-            modelBuilder.Entity<Part>()
-                .HasKey(p => p.Id);
-            modelBuilder.Entity<Question>()
-                .HasKey(q => q.Id);
-            modelBuilder.Entity<HistoryDetail>()
-                .HasKey(rd => rd.Id);
-            modelBuilder.Entity<Test>()
-                .HasKey(t => t.Id);
-            modelBuilder.Entity<UserAnswer>()
-                .HasKey(ua => ua.Id);
+            // Explicitly map entity to table names to avoid EF pluralization issues
+            modelBuilder.Entity<History>().ToTable("history").HasKey(h => h.Id);
+            modelBuilder.Entity<HistoryDetail>().ToTable("historydetail").HasKey(hd => hd.Id);
 
+            // Relationships
             modelBuilder.Entity<Answer>()
                 .HasOne<Question>()
                 .WithMany()

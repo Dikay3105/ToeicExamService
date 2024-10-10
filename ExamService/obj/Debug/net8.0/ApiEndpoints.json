@@ -19,7 +19,7 @@
     "Parameters": [
       {
         "Name": "history",
-        "Type": "ToeicWeb.Server.ExamService.Models.History",
+        "Type": "ToeicWeb.ExamService.ExamService.Models.History",
         "IsRequired": true
       }
     ],
@@ -56,7 +56,7 @@
       },
       {
         "Name": "history",
-        "Type": "ToeicWeb.Server.ExamService.Models.History",
+        "Type": "ToeicWeb.ExamService.ExamService.Models.History",
         "IsRequired": true
       }
     ],
@@ -79,16 +79,16 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ToeicWeb.Server.ExamService.Controllers.PartController",
-    "Method": "GetParts",
-    "RelativePath": "api/Part",
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.HistoryDetailController",
+    "Method": "GetHistoryDetails",
+    "RelativePath": "api/HistoryDetail",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ToeicWeb.Server.ExamService.Models.Question, ExamService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ToeicWeb.ExamService.ExamService.Models.HistoryDetail, ExamService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -99,7 +99,116 @@
     ]
   },
   {
-    "ContainingType": "ToeicWeb.Server.ExamService.Controllers.PartController",
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.HistoryDetailController",
+    "Method": "PostHistoryDetail",
+    "RelativePath": "api/HistoryDetail",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "historyDetail",
+        "Type": "ToeicWeb.ExamService.ExamService.Models.HistoryDetail",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ToeicWeb.ExamService.ExamService.Models.HistoryDetail",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.HistoryDetailController",
+    "Method": "GetHistoryDetail",
+    "RelativePath": "api/HistoryDetail/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ToeicWeb.ExamService.ExamService.Models.HistoryDetail",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.HistoryDetailController",
+    "Method": "PutHistoryDetail",
+    "RelativePath": "api/HistoryDetail/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "historyDetail",
+        "Type": "ToeicWeb.ExamService.ExamService.Models.HistoryDetail",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.HistoryDetailController",
+    "Method": "DeleteHistoryDetail",
+    "RelativePath": "api/HistoryDetail/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.PartController",
+    "Method": "GetParts",
+    "RelativePath": "api/Part",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ToeicWeb.ExamService.ExamService.Models.Question, ExamService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.PartController",
     "Method": "GetPartById",
     "RelativePath": "api/Part/{id}",
     "HttpMethod": "GET",
@@ -114,7 +223,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ToeicWeb.Server.ExamService.Models.Part",
+        "Type": "ToeicWeb.ExamService.ExamService.Models.Part",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -125,7 +234,7 @@
     ]
   },
   {
-    "ContainingType": "ToeicWeb.Server.ExamService.Controllers.PartController",
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.PartController",
     "Method": "GetAnswersOfQuestion",
     "RelativePath": "api/Part/question/{id}",
     "HttpMethod": "GET",
@@ -141,7 +250,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ToeicWeb.Server.ExamService.Controllers.QuestionController",
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.QuestionController",
     "Method": "GetQuestions",
     "RelativePath": "api/Question",
     "HttpMethod": "GET",
@@ -150,7 +259,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ToeicWeb.Server.ExamService.Models.Question, ExamService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ToeicWeb.ExamService.ExamService.Models.Question, ExamService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -161,7 +270,7 @@
     ]
   },
   {
-    "ContainingType": "ToeicWeb.Server.ExamService.Controllers.QuestionController",
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.QuestionController",
     "Method": "AddQuestion",
     "RelativePath": "api/Question",
     "HttpMethod": "POST",
@@ -206,7 +315,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ToeicWeb.Server.ExamService.Models.Question",
+        "Type": "ToeicWeb.ExamService.ExamService.Models.Question",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -226,7 +335,7 @@
     ]
   },
   {
-    "ContainingType": "ToeicWeb.Server.ExamService.Controllers.QuestionController",
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.QuestionController",
     "Method": "GetQuestionById",
     "RelativePath": "api/Question/{id}",
     "HttpMethod": "GET",
@@ -241,7 +350,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ToeicWeb.Server.ExamService.Models.Question",
+        "Type": "ToeicWeb.ExamService.ExamService.Models.Question",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -252,7 +361,7 @@
     ]
   },
   {
-    "ContainingType": "ToeicWeb.Server.ExamService.Controllers.QuestionController",
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.QuestionController",
     "Method": "DeleteQuestion",
     "RelativePath": "api/Question/{id}",
     "HttpMethod": "DELETE",
@@ -268,7 +377,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ToeicWeb.Server.ExamService.Controllers.QuestionController",
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.QuestionController",
     "Method": "UpdateQuestion",
     "RelativePath": "api/Question/{id}",
     "HttpMethod": "PUT",
@@ -343,7 +452,7 @@
     ]
   },
   {
-    "ContainingType": "ToeicWeb.Server.ExamService.Controllers.QuestionController",
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.QuestionController",
     "Method": "GetAnswersOfQuestion",
     "RelativePath": "api/Question/answer/{id}",
     "HttpMethod": "GET",
@@ -359,7 +468,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ToeicWeb.Server.ExamService.Controllers.TestController",
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.TestController",
     "Method": "GetAllTests",
     "RelativePath": "api/Test",
     "HttpMethod": "GET",
@@ -369,7 +478,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ToeicWeb.Server.ExamService.Controllers.TestController",
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.TestController",
     "Method": "CreateTest",
     "RelativePath": "api/Test",
     "HttpMethod": "POST",
@@ -378,14 +487,14 @@
     "Parameters": [
       {
         "Name": "test",
-        "Type": "ToeicWeb.Server.ExamService.Models.Test",
+        "Type": "ToeicWeb.ExamService.ExamService.Models.Test",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ToeicWeb.Server.ExamService.Controllers.TestController",
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.TestController",
     "Method": "GetTest",
     "RelativePath": "api/Test/{id}",
     "HttpMethod": "GET",
@@ -401,7 +510,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ToeicWeb.Server.ExamService.Controllers.TestController",
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.TestController",
     "Method": "UpdateTest",
     "RelativePath": "api/Test/{id}",
     "HttpMethod": "PUT",
@@ -415,14 +524,14 @@
       },
       {
         "Name": "test",
-        "Type": "ToeicWeb.Server.ExamService.Models.Test",
+        "Type": "ToeicWeb.ExamService.ExamService.Models.Test",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ToeicWeb.Server.ExamService.Controllers.TestController",
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.TestController",
     "Method": "DeleteTest",
     "RelativePath": "api/Test/{id}",
     "HttpMethod": "DELETE",
@@ -438,7 +547,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ToeicWeb.Server.ExamService.Controllers.TestController",
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.TestController",
     "Method": "GetAnswersOfQuestion",
     "RelativePath": "api/Test/part/{id}",
     "HttpMethod": "GET",

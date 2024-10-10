@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ToeicWeb.Server.ExamService.Interfaces;
-using ToeicWeb.Server.ExamService.Models;
+using ToeicWeb.ExamService.ExamService.Interfaces;
+using ToeicWeb.ExamService.ExamService.Models;
 
 namespace ExamService.ExamService.Controllers
 {

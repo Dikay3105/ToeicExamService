@@ -1,4 +1,4 @@
-﻿namespace ToeicWeb.Server.ExamService.Models
+﻿namespace ToeicWeb.ExamService.ExamService.Models
 {
     public class Part
     {

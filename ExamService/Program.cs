@@ -1,8 +1,8 @@
-using ExamService.ExamService.Repository;
 using Microsoft.EntityFrameworkCore;
-using ToeicWeb.Server.ExamService.Data;
-using ToeicWeb.Server.ExamService.Interfaces;
-using ToeicWeb.Server.ExamService.Repository;
+using ToeicWeb.ExamService.ExamService.Data;
+using ToeicWeb.ExamService.ExamService.Interfaces;
+using ToeicWeb.ExamService.ExamService.Repositories;
+using ToeicWeb.ExamService.ExamService.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 var allowSpecificOrigins = "_allowSpecificOrigins";
@@ -19,7 +19,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<IPartRepository, PartRepository>();
-builder.Services.AddScoped<IAnswerRespository, AnswerRepository>();
+builder.Services.AddScoped<IHistoryDetailRepository, HistoryDetailRepository>();
 builder.Services.AddScoped<ITestRepository, TestRepository>();
 builder.Services.AddScoped<IHistoryRepository, HistoryRepository>();
 
