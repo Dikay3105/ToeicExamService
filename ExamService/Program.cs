@@ -1,3 +1,5 @@
+using ExamService.ExamService.Interfaces;
+using ExamService.ExamService.Repository;
 using Microsoft.EntityFrameworkCore;
 using ToeicWeb.ExamService.ExamService.Data;
 using ToeicWeb.ExamService.ExamService.Interfaces;
@@ -23,6 +25,7 @@ builder.Services.AddScoped<IHistoryDetailRepository, HistoryDetailRepository>();
 builder.Services.AddScoped<ITestRepository, TestRepository>();
 builder.Services.AddScoped<IHistoryRepository, HistoryRepository>();
 builder.Services.AddScoped<IAnswerRepository, AnswerRepository>();
+builder.Services.AddScoped<IUserAnswerRepository, UserAnswerRepository>();
 
 builder.Services.AddDbContext<ExamDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("ExamServiceConnection"),

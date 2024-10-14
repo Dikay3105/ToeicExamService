@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\huhuh\\source\\repos\\ExamService\\ExamService\\ExamService.csproj": {}
+    "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\huhuh\\source\\repos\\ExamService\\ExamService\\ExamService.csproj": {
+    "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\huhuh\\source\\repos\\ExamService\\ExamService\\ExamService.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService.csproj",
         "projectName": "ExamService",
-        "projectPath": "C:\\Users\\huhuh\\source\\repos\\ExamService\\ExamService\\ExamService.csproj",
-        "packagesPath": "C:\\Users\\huhuh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\huhuh\\source\\repos\\ExamService\\ExamService\\obj\\",
+        "projectPath": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\huhuh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -102,7 +102,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

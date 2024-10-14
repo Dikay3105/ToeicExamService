@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ExamService.ExamService.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using ToeicWeb.ExamService.ExamService.Data;
 using ToeicWeb.ExamService.ExamService.Interfaces;
 using ToeicWeb.ExamService.ExamService.Models;
+using ToeicWeb.ExamService.ExamService.Repositories;
 
 namespace ToeicWeb.ExamService.ExamService.Controllers
 {
@@ -12,12 +14,20 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
         private readonly IPartRepository _partRepository;
         private readonly ExamDbContext _context;
         private readonly IAnswerRepository _answerRepository;
+        private readonly IHistoryDetailRepository _historyDetailRepository;
+        private readonly IUserAnswerRepository _userAnswerRepository;
 
-        public PartController(IPartRepository partRepository, ExamDbContext context, IAnswerRepository answerRepository)
+        public PartController(IPartRepository partRepository,
+            ExamDbContext context,
+            IAnswerRepository answerRepository,
+            IHistoryDetailRepository historyDetailRepository,
+            IUserAnswerRepository userAnswerRepository)
         {
             _partRepository = partRepository;
             _context = context;
             _answerRepository = answerRepository;
+            _historyDetailRepository = historyDetailRepository;
+            _userAnswerRepository = userAnswerRepository;
         }
 
         //Get all part
@@ -106,6 +116,7 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
         [HttpPost("submit")]
         public async Task<IActionResult> SubmitPart([FromBody] PartSubmissionDto request)
         {
+            // Kiểm tra Part có tồn tại hay không
             var part = await _partRepository.GetPartById(request.PartId);
             if (part == null)
             {
@@ -120,16 +131,46 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
             int totalQuestions = request.Answers.Count;
             int correctAnswers = 0;
 
-            // Kiểm tra từng đáp án của người dùng
+            // Khởi tạo danh sách lưu trữ các UserAnswer
+            var userAnswersToAdd = new List<UserAnswer>();
+
+            // Kiểm tra từng đáp án của người dùng và đếm số câu trả lời đúng
             foreach (var userAnswer in request.Answers)
             {
-                var correct = await _answerRepository.IsCorrectAnswer(userAnswer.UserAnswerId);
-                if (correct == true)
+                var isCorrect = await _answerRepository.IsCorrectAnswer(userAnswer.UserAnswerId);
+                if (isCorrect)
                 {
                     correctAnswers++;
                 }
+
+                // Thêm từng câu trả lời của người dùng vào danh sách
+                var newUserAnswer = new UserAnswer
+                {
+                    UserID = request.UserId,
+                    QuestionID = userAnswer.QuestionId,
+                    SelectedAnswerID = userAnswer.UserAnswerId,
+                    HistoryID = request.HistoryId,
+                    IsCorrect = isCorrect
+                };
+
+                userAnswersToAdd.Add(newUserAnswer);
             }
 
+            // Thêm tất cả UserAnswers vào cơ sở dữ liệu trong một lần
+            await _userAnswerRepository.AddUserAnswers(userAnswersToAdd);
+
+            // Thêm thông tin chi tiết vào HistoryDetail
+            var historyDetail = new HistoryDetail
+            {
+                PartID = request.PartId,
+                HistoryID = request.HistoryId,
+                TotalCorrect = correctAnswers,
+                TotalQuestion = totalQuestions
+            };
+
+            await _historyDetailRepository.AddAsync(historyDetail);
+
+            // Trả về kết quả
             return Ok(new
             {
                 EC = 0,
@@ -137,25 +178,29 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                 DT = new
                 {
                     TotalQuestions = totalQuestions,
-                    CorrectAnswers = correctAnswers,
+                    CorrectAnswers = correctAnswers
                 }
             });
         }
 
 
+
+
+        //DTO dữ liệu đầu vào chấm điểm theo part
+        public class PartSubmissionDto
+        {
+            public int PartId { get; set; }
+            public int HistoryId { get; set; }
+            public int UserId { get; set; }
+            public List<AnswerDto> Answers { get; set; }
+        }
+
+        // DTO cho câu trả lời của người dùng
+        public class AnswerDto
+        {
+            public int QuestionId { get; set; }
+            public int UserAnswerId { get; set; }
+        }
     }
 
-    //DTO dữ liệu đầu vào chấm điểm theo part
-    public class PartSubmissionDto
-    {
-        public int PartId { get; set; }
-        public List<AnswerDto> Answers { get; set; }
-    }
-
-    // DTO cho câu trả lời của người dùng
-    public class AnswerDto
-    {
-        public int QuestionId { get; set; }
-        public int UserAnswerId { get; set; }
-    }
 }

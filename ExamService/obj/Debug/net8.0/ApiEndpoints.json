@@ -338,7 +338,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "ToeicWeb.ExamService.ExamService.Controllers.PartSubmissionDto",
+        "Type": "ToeicWeb.ExamService.ExamService.Controllers.PartController\u002BPartSubmissionDto",
         "IsRequired": true
       }
     ],
@@ -651,6 +651,22 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.UserAnswerController",
+    "Method": "GetUserAnswersByHistoryId",
+    "RelativePath": "api/UserAnswer/{historyId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "historyId",
         "Type": "System.Int32",
         "IsRequired": true
       }

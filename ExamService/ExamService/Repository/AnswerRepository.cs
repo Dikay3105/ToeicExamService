@@ -46,11 +46,11 @@ namespace ToeicWeb.ExamService.ExamService.Repositories
             }
         }
 
-        public async Task<bool?> IsCorrectAnswer(int id)
+        public async Task<bool> IsCorrectAnswer(int id)
         {
             var answer = await GetAnswerById(id);
             if (answer == null)
-                return null;  // Trả về null nếu không tìm thấy đáp án
+                return false;  // Trả về null nếu không tìm thấy đáp án
 
             return answer.IsCorrect;
         }

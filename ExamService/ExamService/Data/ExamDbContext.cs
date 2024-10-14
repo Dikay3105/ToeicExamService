@@ -24,6 +24,7 @@ namespace ToeicWeb.ExamService.ExamService.Data
             modelBuilder.Entity<History>().ToTable("history").HasKey(h => h.Id);
             modelBuilder.Entity<HistoryDetail>().ToTable("historydetail").HasKey(hd => hd.Id);
 
+
             // Relationships
             modelBuilder.Entity<Answer>()
                 .HasOne<Question>()

@@ -9,6 +9,6 @@ namespace ToeicWeb.ExamService.ExamService.Interfaces
         Task CreateAnswer(Answer answer);
         Task UpdateAnswer(Answer answer);
         Task DeleteAnswer(int id);
-        Task<bool?> IsCorrectAnswer(int id);
+        Task<bool> IsCorrectAnswer(int id);
     }
 }
