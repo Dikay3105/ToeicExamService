@@ -122,6 +122,8 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
             // Biến lưu URL hình ảnh và âm thanh nếu có
             string imageUrl = null;
             string audioUrl = null;
+            string imageName = null;
+            string audioName = null;
 
             // Nếu có hình ảnh, tải lên Cloudinary
             if (model.image != null && model.image.Length > 0)
@@ -129,10 +131,10 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                 var imageUploadParams = new ImageUploadParams()
                 {
                     File = new FileDescription(model.image.FileName, model.image.OpenReadStream()),
-                    Transformation = new Transformation().Height(300).Width(300).Crop("limit") // Điều chỉnh kích thước
                 };
                 var imageUploadResult = await _cloudinary.UploadAsync(imageUploadParams);
                 imageUrl = imageUploadResult.SecureUrl.AbsoluteUri; // Lưu trữ URL của hình ảnh
+                imageName = model.image.FileName; // Lưu trữ name của hình ảnh
             }
 
             // Nếu có audio, tải lên Cloudinary
@@ -144,6 +146,7 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                 };
                 var audioUploadResult = await _cloudinary.UploadAsync(audioUploadParams);
                 audioUrl = audioUploadResult.SecureUrl.AbsoluteUri; // Lưu trữ URL của âm thanh
+                audioName = model.audio.FileName; // Lưu trữ name của âm thanh
             }
 
             // Tạo đối tượng câu hỏi mới từ model
@@ -153,6 +156,8 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                 Text = model.Text,
                 ImagePath = imageUrl,  // URL hình ảnh nếu có
                 AudioPath = audioUrl,  // URL âm thanh nếu có
+                ImageName = imageName,
+                AudioName = audioName,
                 CreatedAt = model.CreatedAt,
                 UpdatedAt = model.UpdatedAt,
                 AnswerCounts = model.AnswerCounts
@@ -195,7 +200,6 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
             });
         }
 
-        // PUT: api/question/{id}
         [HttpPut("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
@@ -215,47 +219,93 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                 return NotFound(new { EC = -1, EM = "No question found" });
             }
 
-            // Cập nhật thông tin câu hỏi
-            existingQuestion.PartID = model.PartID;
-            existingQuestion.Text = model.Text;
-            existingQuestion.UpdatedAt = DateTime.Now; // Cập nhật thời gian
-            existingQuestion.AnswerCounts = model.AnswerCounts;
+            // Cờ để theo dõi có thay đổi nào cần update hay không
+            bool hasUpdates = false;
 
-            // Nếu có hình ảnh và URL hình ảnh hiện tại không rỗng, xóa hình ảnh cũ trước
-            if (model.image != null && model.image.Length > 0)
+            // Kiểm tra và cập nhật nếu thông tin PartID thay đổi
+            if (existingQuestion.PartID != model.PartID)
             {
-                if (!string.IsNullOrEmpty(existingQuestion.ImagePath)) // Kiểm tra nếu có URL cũ
-                {
-                    var publicId = existingQuestion.ImagePath.Split('/').Last().Split('.').First(); // Lấy public ID từ URL
-                    await _cloudinary.DeleteResourcesAsync(ResourceType.Image, publicId); // Xóa tệp cũ
-                }
-
-                // Tải lên hình ảnh mới
-                var uploadParams = new ImageUploadParams()
-                {
-                    File = new FileDescription(model.image.FileName, model.image.OpenReadStream()),
-                    Transformation = new Transformation().Height(300).Width(300).Crop("limit") // Có thể thay đổi theo nhu cầu
-                };
-                var uploadResult = await _cloudinary.UploadAsync(uploadParams);
-                existingQuestion.ImagePath = uploadResult.SecureUrl.AbsoluteUri; // Lưu trữ URL của hình ảnh
+                existingQuestion.PartID = model.PartID;
+                hasUpdates = true;
             }
 
-            // Nếu có âm thanh và URL âm thanh hiện tại không rỗng, xóa âm thanh cũ trước
+            // Kiểm tra và cập nhật nếu Text thay đổi
+            if (existingQuestion.Text != model.Text)
+            {
+                existingQuestion.Text = model.Text;
+                hasUpdates = true;
+            }
+
+            // Kiểm tra và cập nhật nếu AnswerCounts thay đổi
+            if (existingQuestion.AnswerCounts != model.AnswerCounts)
+            {
+                existingQuestion.AnswerCounts = model.AnswerCounts;
+                hasUpdates = true;
+            }
+
+            // Kiểm tra hình ảnh mới có khác so với hình ảnh hiện tại không
+            if (model.image != null && model.image.Length > 0)
+            {
+                var newImageFileName = Path.GetFileName(model.image.FileName); // Lấy tên tệp mới
+                var currentImageFileName = existingQuestion.ImageName; // Lấy tên tệp hiện tại
+
+                // Nếu hình ảnh mới khác với hình ảnh hiện tại, xóa hình ảnh cũ và tải hình ảnh mới lên
+                if (!string.Equals(newImageFileName, currentImageFileName, StringComparison.OrdinalIgnoreCase))
+                {
+                    // Xóa tệp hình ảnh cũ nếu có
+                    if (!string.IsNullOrEmpty(existingQuestion.ImagePath))
+                    {
+                        var publicId = existingQuestion.ImagePath.Split('/').Last().Split('.').First();
+                        await _cloudinary.DeleteResourcesAsync(ResourceType.Image, publicId); // Xóa tệp cũ
+                    }
+
+                    // Tải lên hình ảnh mới
+                    var uploadParams = new ImageUploadParams()
+                    {
+                        File = new FileDescription(model.image.FileName, model.image.OpenReadStream()),
+                    };
+                    var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+                    existingQuestion.ImagePath = uploadResult.SecureUrl.AbsoluteUri; // Lưu trữ URL của hình ảnh mới
+                    hasUpdates = true; // Đánh dấu rằng đã có sự thay đổi
+                }
+            }
+
+            // Kiểm tra âm thanh mới có khác so với âm thanh hiện tại không
             if (model.audio != null && model.audio.Length > 0)
             {
-                if (!string.IsNullOrEmpty(existingQuestion.AudioPath)) // Kiểm tra nếu có URL cũ
-                {
-                    var publicId = existingQuestion.AudioPath.Split('/').Last(); // Lấy public ID từ URL
-                    await _cloudinary.DestroyAsync(new DeletionParams(publicId) { ResourceType = ResourceType.Raw }); // Sử dụng DestroyAsync cho âm thanh
-                }
+                var newAudioFileName = Path.GetFileName(model.audio.FileName); // Lấy tên tệp mới
+                var currentAudioFileName = existingQuestion.AudioName; // Lấy tên tệp hiện tại
 
-                // Tải lên âm thanh mới
-                var uploadParams = new RawUploadParams() // Hoặc AudioUploadParams nếu bạn đã có
+                // Nếu âm thanh mới khác với âm thanh hiện tại, xóa âm thanh cũ và tải âm thanh mới lên
+                if (!string.Equals(newAudioFileName, currentAudioFileName, StringComparison.OrdinalIgnoreCase))
                 {
-                    File = new FileDescription(model.audio.FileName, model.audio.OpenReadStream())
-                };
-                var uploadResult = await _cloudinary.UploadAsync(uploadParams);
-                existingQuestion.AudioPath = uploadResult.SecureUrl.AbsoluteUri; // Lưu trữ URL của âm thanh
+                    // Xóa tệp âm thanh cũ nếu có
+                    if (!string.IsNullOrEmpty(existingQuestion.AudioPath))
+                    {
+                        var publicId = existingQuestion.AudioPath.Split('/').Last(); // Lấy public ID từ URL
+                        await _cloudinary.DestroyAsync(new DeletionParams(publicId) { ResourceType = ResourceType.Raw }); // Xóa tệp cũ
+                    }
+
+                    // Tải lên âm thanh mới
+                    var uploadParams = new RawUploadParams()
+                    {
+                        File = new FileDescription(model.audio.FileName, model.audio.OpenReadStream())
+                    };
+                    var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+                    existingQuestion.AudioPath = uploadResult.SecureUrl.AbsoluteUri; // Lưu trữ URL của âm thanh mới
+                    hasUpdates = true; // Đánh dấu rằng đã có sự thay đổi
+                }
+            }
+
+            // Nếu không có thay đổi nào, không thực hiện cập nhật
+            if (!hasUpdates)
+            {
+                return Ok(new
+                {
+                    EC = 1,
+                    EM = "No changes detected",
+                    DT = existingQuestion
+                });
             }
 
             // Cập nhật câu hỏi vào cơ sở dữ liệu qua repository
