@@ -22,6 +22,7 @@ builder.Services.AddScoped<IPartRepository, PartRepository>();
 builder.Services.AddScoped<IHistoryDetailRepository, HistoryDetailRepository>();
 builder.Services.AddScoped<ITestRepository, TestRepository>();
 builder.Services.AddScoped<IHistoryRepository, HistoryRepository>();
+builder.Services.AddScoped<IAnswerRepository, AnswerRepository>();
 
 builder.Services.AddDbContext<ExamDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("ExamServiceConnection"),

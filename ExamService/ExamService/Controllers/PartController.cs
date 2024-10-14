@@ -11,14 +11,16 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
     {
         private readonly IPartRepository _partRepository;
         private readonly ExamDbContext _context;
+        private readonly IAnswerRepository _answerRepository;
 
-        public PartController(IPartRepository partRepository, ExamDbContext context)
+        public PartController(IPartRepository partRepository, ExamDbContext context, IAnswerRepository answerRepository)
         {
             _partRepository = partRepository;
             _context = context;
+            _answerRepository = answerRepository;
         }
 
-        //Get all question
+        //Get all part
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Question>))]
         public IActionResult GetParts()
@@ -61,30 +63,30 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
             }); // Return the found user
         }
 
-        // API endpoint để part của test
+        // API endpoint để get question của part theo id
         [HttpGet("question/{id}")]
         public async Task<IActionResult> GetAnswersOfQuestion(int id)
         {
             // Gọi phương thức trong repository để lấy câu trả lời
-            var question = await _partRepository.GetPartById(id);
-            if (question == null)
+            var part = await _partRepository.GetPartById(id);
+            if (part == null)
             {
                 return NotFound(new
                 {
                     EC = -1,
-                    EM = "No question found for the given question ID."
+                    EM = "No part found for the given part ID."
                 });
             }
 
-            var answers = await _partRepository.GetQuestionOfPart(id);
+            var questions = await _partRepository.GetQuestionOfPart(id);
 
             // Kiểm tra nếu không có câu trả lời nào
-            if (answers == null || !answers.Any())
+            if (questions == null || !questions.Any())
             {
                 return NotFound(new
                 {
                     EC = -1,
-                    EM = "No answers found for the given question ID."
+                    EM = "No questions found for the given part ID."
                 });
             }
 
@@ -92,14 +94,68 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
             return Ok(new
             {
                 EC = 0,
-                EM = "Get answer of questionId=" + id + " success",
+                EM = "Get question of partID=" + id + " success",
                 DT = new
                 {
-                    part = question,
-                    question = answers
+                    part,
+                    questions
                 }
             });
         }
 
+        [HttpPost("submit")]
+        public async Task<IActionResult> SubmitPart([FromBody] PartSubmissionDto request)
+        {
+            var part = await _partRepository.GetPartById(request.PartId);
+            if (part == null)
+            {
+                return NotFound(new
+                {
+                    EC = -1,
+                    EM = "Part not found",
+                    DT = ""
+                });
+            }
+
+            int totalQuestions = request.Answers.Count;
+            int correctAnswers = 0;
+
+            // Kiểm tra từng đáp án của người dùng
+            foreach (var userAnswer in request.Answers)
+            {
+                var correct = await _answerRepository.IsCorrectAnswer(userAnswer.UserAnswerId);
+                if (correct == true)
+                {
+                    correctAnswers++;
+                }
+            }
+
+            return Ok(new
+            {
+                EC = 0,
+                EM = "Submit part success",
+                DT = new
+                {
+                    TotalQuestions = totalQuestions,
+                    CorrectAnswers = correctAnswers,
+                }
+            });
+        }
+
+
+    }
+
+    //DTO dữ liệu đầu vào chấm điểm theo part
+    public class PartSubmissionDto
+    {
+        public int PartId { get; set; }
+        public List<AnswerDto> Answers { get; set; }
+    }
+
+    // DTO cho câu trả lời của người dùng
+    public class AnswerDto
+    {
+        public int QuestionId { get; set; }
+        public int UserAnswerId { get; set; }
     }
 }

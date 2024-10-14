@@ -1,5 +1,84 @@
 [
   {
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.AnswerController",
+    "Method": "GetAllAnswers",
+    "RelativePath": "api/Answer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.AnswerController",
+    "Method": "CreateAnswer",
+    "RelativePath": "api/Answer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newAnswer",
+        "Type": "ToeicWeb.ExamService.ExamService.Models.Answer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.AnswerController",
+    "Method": "GetAnswerById",
+    "RelativePath": "api/Answer/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.AnswerController",
+    "Method": "UpdateAnswer",
+    "RelativePath": "api/Answer/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedAnswer",
+        "Type": "ToeicWeb.ExamService.ExamService.Models.Answer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.AnswerController",
+    "Method": "DeleteAnswer",
+    "RelativePath": "api/Answer/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ExamService.ExamService.Controllers.HistoryController",
     "Method": "GetAllHistories",
     "RelativePath": "api/History",
@@ -244,6 +323,22 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ToeicWeb.ExamService.ExamService.Controllers.PartController",
+    "Method": "SubmitPart",
+    "RelativePath": "api/Part/submit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ToeicWeb.ExamService.ExamService.Controllers.PartSubmissionDto",
         "IsRequired": true
       }
     ],
