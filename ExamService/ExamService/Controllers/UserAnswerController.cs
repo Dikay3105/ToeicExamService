@@ -30,7 +30,6 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                 {
                     EC = -1,
                     EM = "No history found for this history ID",
-                    DT = ""
                 });
             }
 
@@ -42,7 +41,6 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                 {
                     EC = -1,
                     EM = "No answers found for this history ID",
-                    DT = ""
                 });
             }
 

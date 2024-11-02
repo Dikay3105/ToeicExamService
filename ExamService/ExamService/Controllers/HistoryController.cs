@@ -20,7 +20,12 @@ namespace ExamService.ExamService.Controllers
         public async Task<IActionResult> GetAllHistories()
         {
             var histories = await _historyRepository.GetAllHistoriesAsync();
-            return Ok(histories);
+            return Ok(new
+            {
+                EC = 0,
+                EM = "Fetch all histories successfully",
+                DT = histories
+            });
         }
 
         // GET: api/History/5
@@ -30,44 +35,95 @@ namespace ExamService.ExamService.Controllers
             var history = await _historyRepository.GetHistoryByIdAsync(id);
             if (history == null)
             {
-                return NotFound();
+                return NotFound(new
+                {
+                    EC = 1,
+                    EM = $"No history found with Id = {id}"
+                });
             }
 
-            return Ok(history);
+            return Ok(new
+            {
+                EC = 0,
+                EM = "Fetch history successfully",
+                DT = history
+            });
         }
 
         // POST: api/History
         [HttpPost]
         public async Task<IActionResult> CreateHistory([FromBody] History history)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                await _historyRepository.AddHistoryAsync(history);
-                return CreatedAtAction(nameof(GetHistory), new { id = history.Id }, history);
+                return BadRequest(new
+                {
+                    EC = 1,
+                    EM = "Invalid data"
+                });
             }
 
-            return BadRequest(ModelState);
+            await _historyRepository.AddHistoryAsync(history);
+            return Ok(new
+            {
+                EC = 0,
+                EM = "Add history successfully",
+                DT = history
+            });
         }
 
         // PUT: api/History/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateHistory(int id, [FromBody] History history)
+        public async Task<IActionResult> UpdateHistory([FromBody] History history)
         {
-            if (id != history.Id)
+            if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(new
+                {
+                    EC = 1,
+                    EM = "Invalid data"
+                });
+            }
+
+            var oldHistory = await _historyRepository.GetHistoryByIdAsync(history.Id);
+            if (oldHistory == null)
+            {
+                return NotFound(new
+                {
+                    EC = 1,
+                    EM = $"No data found with history Id = {history.Id}"
+                });
             }
 
             await _historyRepository.UpdateHistoryAsync(history);
-            return NoContent();
+            return Ok(new
+            {
+                EC = 0,
+                EM = "Update history successfully",
+                DT = history
+            });
         }
 
         // DELETE: api/History/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHistory(int id)
         {
+            var history = await _historyRepository.GetHistoryByIdAsync(id);
+            if (history == null)
+            {
+                return NotFound(new
+                {
+                    EC = 1,
+                    EM = $"No history found with Id = {id}"
+                });
+            }
+
             await _historyRepository.DeleteHistoryAsync(id);
-            return NoContent();
+            return Ok(new
+            {
+                EC = 0,
+                EM = "Delete history successfully"
+            });
         }
     }
 }

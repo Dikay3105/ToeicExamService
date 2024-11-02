@@ -9,5 +9,6 @@ namespace ToeicWeb.ExamService.ExamService.Interfaces
         Task AddHistoryAsync(History history);
         Task UpdateHistoryAsync(History history);
         Task DeleteHistoryAsync(int id);
+        Task<History> GetHistoryByUserIdAndTestId(int historyId, int testId);
     }
 }

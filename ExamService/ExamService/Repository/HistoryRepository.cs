@@ -23,6 +23,12 @@ namespace ToeicWeb.ExamService.ExamService.Repository
         {
             return await _context.Histories.FindAsync(id);
         }
+        public async Task<History> GetHistoryByUserIdAndTestId(int historyId, int testId)
+        {
+            return await _context.Histories
+                .Where(h => h.Id == historyId && h.TestID == testId)
+                .FirstOrDefaultAsync();
+        }
 
         public async Task AddHistoryAsync(History history)
         {

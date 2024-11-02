@@ -9,7 +9,6 @@ namespace ToeicWeb.ExamService.ExamService.Data
             : base(options)
         {
         }
-
         public DbSet<Answer> Answers { get; set; }
         public DbSet<History> Histories { get; set; }
         public DbSet<Part> Parts { get; set; }
@@ -23,7 +22,6 @@ namespace ToeicWeb.ExamService.ExamService.Data
             // Explicitly map entity to table names to avoid EF pluralization issues
             modelBuilder.Entity<History>().ToTable("history").HasKey(h => h.Id);
             modelBuilder.Entity<HistoryDetail>().ToTable("historydetail").HasKey(hd => hd.Id);
-
 
             // Relationships
             modelBuilder.Entity<Answer>()
