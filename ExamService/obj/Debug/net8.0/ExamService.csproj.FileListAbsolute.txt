@@ -104,6 +104,7 @@ C:\Users\huhuh\source\repos\ExamService\ExamService\obj\Debug\net8.0\ExamService
 C:\Users\huhuh\source\repos\ExamService\ExamService\obj\Debug\net8.0\ref\ExamService.dll
 C:\Users\huhuh\source\repos\ExamService\ExamService\bin\Debug\net8.0\CloudinaryDotNet.dll
 C:\Users\huhuh\source\repos\ExamService\ExamService\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\huhuh\source\repos\ExamService\ExamService\obj\Debug\net8.0\ExamService.sourcelink.json
 C:\Users\PC\source\repos\ExamService\ExamService\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\PC\source\repos\ExamService\ExamService\bin\Debug\net8.0\appsettings.json
 C:\Users\PC\source\repos\ExamService\ExamService\bin\Debug\net8.0\ExamService.exe
@@ -211,4 +212,3 @@ C:\Users\PC\source\repos\ExamService\ExamService\obj\Debug\net8.0\refint\ExamSer
 C:\Users\PC\source\repos\ExamService\ExamService\obj\Debug\net8.0\ExamService.pdb
 C:\Users\PC\source\repos\ExamService\ExamService\obj\Debug\net8.0\ExamService.genruntimeconfig.cache
 C:\Users\PC\source\repos\ExamService\ExamService\obj\Debug\net8.0\ref\ExamService.dll
-C:\Users\huhuh\source\repos\ExamService\ExamService\obj\Debug\net8.0\ExamService.sourcelink.json

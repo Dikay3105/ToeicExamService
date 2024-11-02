@@ -1,4 +1,4 @@
-using ExamService.ExamService.Interfaces;
+﻿using ExamService.ExamService.Interfaces;
 using ExamService.ExamService.Repository;
 using Microsoft.EntityFrameworkCore;
 using ToeicWeb.ExamService.ExamService.Data;
@@ -44,6 +44,22 @@ builder.Services.AddCors(options =>
                       });
 });
 var app = builder.Build();
+
+// Tự động thực hiện migration
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<ExamDbContext>();
+        context.Database.Migrate(); // Thực hiện migration
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while migrating the database.");
+    }
+}
 
 
 // Configure the HTTP request pipeline.

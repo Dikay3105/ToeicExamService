@@ -1,0 +1,23 @@
+services:
+  examservice:
+    image: ${DOCKER_REGISTRY-}examservice
+    build:
+      context: .
+      dockerfile: ExamService/Dockerfile
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+
+  toeicdb:
+    image: mysql:8.0
+    environment:
+       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+       MYSQL_DATABASE: toeicweb
+       MYSQL_ROOT_PASSWORD: ""
+    ports:
+      - "3308:3306"  # Changed port mapping to avoid conflict
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
