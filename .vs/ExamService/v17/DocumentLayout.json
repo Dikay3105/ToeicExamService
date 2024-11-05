@@ -3,32 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\PC\\source\\repos\\ExamService\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\pc\\source\\repos\\examservice\\examservice\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\pc\\source\\repos\\examservice\\examservice\\examservice\\repository\\historyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\examservice\\repository\\historyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\pc\\source\\repos\\examservice\\examservice\\examservice\\models\\historydetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\examservice\\models\\historydetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\pc\\source\\repos\\examservice\\examservice\\examservice\\models\\history.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\examservice\\models\\history.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\pc\\source\\repos\\examservice\\examservice\\examservice\\controllers\\partcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\examservice\\controllers\\partcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\pc\\source\\repos\\examservice\\examservice\\examservice\\controllers\\historycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\examservice\\controllers\\historycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\pc\\source\\repos\\examservice\\examservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\pc\\source\\repos\\examservice\\examservice\\examservice\\data\\examdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\examservice\\data\\examdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\pc\\source\\repos\\examservice\\examservice\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{142A653F-EC4B-4BEA-8606-1059C41EA261}|docker-compose.dcproj|c:\\users\\pc\\source\\repos\\examservice\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{142A653F-EC4B-4BEA-8606-1059C41EA261}|docker-compose.dcproj|solutionrelative:docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{142A653F-EC4B-4BEA-8606-1059C41EA261}|docker-compose.dcproj|c:\\users\\pc\\source\\repos\\examservice\\docker-compose.override.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{142A653F-EC4B-4BEA-8606-1059C41EA261}|docker-compose.dcproj|solutionrelative:docker-compose.override.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\pc\\source\\repos\\examservice\\examservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\pc\\source\\repos\\examservice\\examservice\\examservice\\controllers\\historycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\examservice\\controllers\\historycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 857,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,93 +70,107 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ExamDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Data\\ExamDbContext.cs",
-              "RelativeDocumentMoniker": "ExamService\\ExamService\\Data\\ExamDbContext.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Data\\ExamDbContext.cs",
-              "RelativeToolTip": "ExamService\\ExamService\\Data\\ExamDbContext.cs",
-              "ViewState": "AgIAAGEAAAAAAAAAAAAowHYAAABTAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-02T15:06:56.727Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\Program.cs",
-              "RelativeDocumentMoniker": "ExamService\\Program.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\Program.cs",
-              "RelativeToolTip": "ExamService\\Program.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAAAD0AAAABAAAAAAAAAA==",
+              "Title": "HistoryDetail.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Models\\HistoryDetail.cs",
+              "RelativeDocumentMoniker": "ExamService\\ExamService\\Models\\HistoryDetail.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Models\\HistoryDetail.cs",
+              "RelativeToolTip": "ExamService\\ExamService\\Models\\HistoryDetail.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-02T14:59:16.996Z",
+              "WhenOpened": "2024-11-05T17:44:27.233Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\appsettings.json",
-              "RelativeDocumentMoniker": "ExamService\\appsettings.json",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\appsettings.json",
-              "RelativeToolTip": "ExamService\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-02T14:52:41.394Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "docker-compose.override.yml",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\docker-compose.override.yml",
-              "RelativeDocumentMoniker": "docker-compose.override.yml",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\docker-compose.override.yml",
-              "RelativeToolTip": "docker-compose.override.yml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2024-11-02T14:39:12.988Z",
+              "DocumentIndex": 2,
+              "Title": "History.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Models\\History.cs",
+              "RelativeDocumentMoniker": "ExamService\\ExamService\\Models\\History.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Models\\History.cs",
+              "RelativeToolTip": "ExamService\\ExamService\\Models\\History.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T17:36:36.942Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "docker-compose.yml",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\docker-compose.yml",
-              "RelativeDocumentMoniker": "docker-compose.yml",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\docker-compose.yml",
-              "RelativeToolTip": "docker-compose.yml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2024-11-02T14:12:29.407Z",
+              "Title": "PartController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Controllers\\PartController.cs",
+              "RelativeDocumentMoniker": "ExamService\\ExamService\\Controllers\\PartController.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Controllers\\PartController.cs",
+              "RelativeToolTip": "ExamService\\ExamService\\Controllers\\PartController.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T17:31:45.47Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Dockerfile",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\Dockerfile",
-              "RelativeDocumentMoniker": "ExamService\\Dockerfile",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\Dockerfile",
-              "RelativeToolTip": "ExamService\\Dockerfile",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-11-02T14:01:40.22Z",
+              "Title": "HistoryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Repository\\HistoryRepository.cs",
+              "RelativeDocumentMoniker": "ExamService\\ExamService\\Repository\\HistoryRepository.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Repository\\HistoryRepository.cs",
+              "RelativeToolTip": "ExamService\\ExamService\\Repository\\HistoryRepository.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAwFcAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T17:27:30.1Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "HistoryController.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Controllers\\HistoryController.cs",
               "RelativeDocumentMoniker": "ExamService\\ExamService\\Controllers\\HistoryController.cs",
               "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Controllers\\HistoryController.cs",
               "RelativeToolTip": "ExamService\\ExamService\\Controllers\\HistoryController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABGAAAAAAAAAA==",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAAwFcAAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T03:30:36.234Z"
+              "WhenOpened": "2024-11-05T17:23:18.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\Program.cs",
+              "RelativeDocumentMoniker": "ExamService\\Program.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\Program.cs",
+              "RelativeToolTip": "ExamService\\Program.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACwAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T16:59:07.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\Dockerfile",
+              "RelativeDocumentMoniker": "ExamService\\Dockerfile",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\Dockerfile",
+              "RelativeToolTip": "ExamService\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-05T16:20:28.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "docker-compose.yml",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\docker-compose.yml",
+              "RelativeDocumentMoniker": "docker-compose.yml",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\docker-compose.yml",
+              "RelativeToolTip": "docker-compose.yml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2024-11-05T16:18:41.1Z",
+              "EditorCaption": ""
             }
           ]
         },
