@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ToeicWeb.ExamService.ExamService.Interfaces;
 using ToeicWeb.ExamService.ExamService.Models;
+using static ToeicWeb.ExamService.ExamService.Repository.HistoryRepository;
 
 namespace ExamService.ExamService.Controllers
 {
@@ -124,6 +125,41 @@ namespace ExamService.ExamService.Controllers
                 EC = 0,
                 EM = "Delete history successfully"
             });
+        }
+
+        // API để lấy lịch sử kết hợp theo userId và hisId
+        [HttpGet("PartOfHistory/{userId}/{hisId}")]
+        public async Task<IActionResult> GetCombinedHistories(int userId, int hisId)
+        {
+            try
+            {
+                IEnumerable<HistoryDto> histories = await _historyRepository.GetCombinedHistoriesAsync(userId, hisId);
+
+                if (histories == null || !histories.Any())
+                {
+                    return Ok(new
+                    {
+                        EC = -1,
+                        EM = "Không tìm thấy lịch sử."
+                    });
+                }
+
+                return Ok(new
+                {
+                    EC = -1,
+                    EM = "Success",
+                    DT = histories
+                });
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi khi có exception
+                return Ok(new
+                {
+                    EC = -1,
+                    EM = "Đã xảy ra lỗi khi lấy dữ liệu."
+                });
+            }
         }
     }
 }
