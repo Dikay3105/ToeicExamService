@@ -105,7 +105,11 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
         public async Task<IActionResult> DeleteTest(int id)
         {
             await _testRepository.DeleteTestAsync(id);
-            return NoContent();
+            return Ok(new
+            {
+                EC = 0,
+                EM = "Del test success",
+            });
         }
 
         // API endpoint để lấy part cuả test theo id
