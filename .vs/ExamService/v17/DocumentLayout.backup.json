@@ -1,14 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\huhuh\\source\\repos\\ExamService\\",
+  "WorkspaceRootPath": "C:\\Users\\PC\\source\\repos\\ExamService\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\huhuh\\source\\repos\\examservice\\examservice\\examservice\\repository\\historyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\examservice\\repository\\historyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\pc\\source\\repos\\examservice\\examservice\\examservice\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\examservice\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\huhuh\\source\\repos\\examservice\\examservice\\examservice\\controllers\\historycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\pc\\source\\repos\\examservice\\examservice\\examservice\\controllers\\historycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\examservice\\controllers\\historycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\pc\\source\\repos\\examservice\\examservice\\examservice\\repository\\testrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\examservice\\repository\\testrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|c:\\users\\pc\\source\\repos\\examservice\\examservice\\examservice\\controllers\\partcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E89A3DEC-3975-444E-991A-CF8B08C04708}|ExamService\\ExamService.csproj|solutionrelative:examservice\\examservice\\controllers\\partcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -20,10 +28,6 @@
           "DockedWidth": 857,
           "SelectedChildIndex": 7,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -50,26 +54,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "HistoryRepository.cs",
-              "DocumentMoniker": "C:\\Users\\huhuh\\source\\repos\\ExamService\\ExamService\\ExamService\\Repository\\HistoryRepository.cs",
-              "RelativeDocumentMoniker": "ExamService\\ExamService\\Repository\\HistoryRepository.cs",
-              "ToolTip": "C:\\Users\\huhuh\\source\\repos\\ExamService\\ExamService\\ExamService\\Repository\\HistoryRepository.cs",
-              "RelativeToolTip": "ExamService\\ExamService\\Repository\\HistoryRepository.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAAAEMAAABPAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "TestRepository.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Repository\\TestRepository.cs",
+              "RelativeDocumentMoniker": "ExamService\\ExamService\\Repository\\TestRepository.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Repository\\TestRepository.cs",
+              "RelativeToolTip": "ExamService\\ExamService\\Repository\\TestRepository.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAABoAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T02:17:51.702Z",
+              "WhenOpened": "2024-11-06T14:36:18.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TestController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Controllers\\TestController.cs",
+              "RelativeDocumentMoniker": "ExamService\\ExamService\\Controllers\\TestController.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Controllers\\TestController.cs",
+              "RelativeToolTip": "ExamService\\ExamService\\Controllers\\TestController.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAAAEcAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T14:34:50.083Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PartController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Controllers\\PartController.cs",
+              "RelativeDocumentMoniker": "ExamService\\ExamService\\Controllers\\PartController.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Controllers\\PartController.cs",
+              "RelativeToolTip": "ExamService\\ExamService\\Controllers\\PartController.cs",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T14:07:37.15Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "HistoryController.cs",
-              "DocumentMoniker": "C:\\Users\\huhuh\\source\\repos\\ExamService\\ExamService\\ExamService\\Controllers\\HistoryController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Controllers\\HistoryController.cs",
               "RelativeDocumentMoniker": "ExamService\\ExamService\\Controllers\\HistoryController.cs",
-              "ToolTip": "C:\\Users\\huhuh\\source\\repos\\ExamService\\ExamService\\ExamService\\Controllers\\HistoryController.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\ExamService\\ExamService\\ExamService\\Controllers\\HistoryController.cs",
               "RelativeToolTip": "ExamService\\ExamService\\Controllers\\HistoryController.cs",
-              "ViewState": "AgIAAIAAAAAAAAAAAAAgwIcAAABmAAAAAAAAAA==",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAAAIcAAABmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-06T02:15:17.897Z",
               "EditorCaption": ""
