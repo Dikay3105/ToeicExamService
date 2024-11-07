@@ -16,18 +16,22 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
         private readonly IAnswerRepository _answerRepository;
         private readonly IHistoryDetailRepository _historyDetailRepository;
         private readonly IUserAnswerRepository _userAnswerRepository;
+        private readonly IQuestionRepository _questionRepository;
 
         public PartController(IPartRepository partRepository,
             ExamDbContext context,
             IAnswerRepository answerRepository,
             IHistoryDetailRepository historyDetailRepository,
-            IUserAnswerRepository userAnswerRepository)
+            IUserAnswerRepository userAnswerRepository,
+            IQuestionRepository questionRepository
+            )
         {
             _partRepository = partRepository;
             _context = context;
             _answerRepository = answerRepository;
             _historyDetailRepository = historyDetailRepository;
             _userAnswerRepository = userAnswerRepository;
+            _questionRepository = questionRepository;
         }
 
         //Get all part
@@ -73,11 +77,10 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
             }); // Return the found user
         }
 
-        // API endpoint để get question của part theo id
         [HttpGet("question/{id}")]
         public async Task<IActionResult> GetAnswersOfQuestion(int id)
         {
-            // Gọi phương thức trong repository để lấy câu trả lời
+            // Lấy thông tin phần từ repository
             var part = await _partRepository.GetPartById(id);
             if (part == null)
             {
@@ -88,9 +91,10 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                 });
             }
 
+            // Lấy danh sách câu hỏi của phần
             var questions = await _partRepository.GetQuestionOfPart(id);
 
-            // Kiểm tra nếu không có câu trả lời nào
+            // Kiểm tra nếu không có câu hỏi nào
             if (questions == null || !questions.Any())
             {
                 return NotFound(new
@@ -100,18 +104,49 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                 });
             }
 
-            // Trả về danh sách câu trả lời
+            // Tạo danh sách chứa câu hỏi và câu trả lời
+            var listQuesAns = new List<object>();
+
+            foreach (var ques in questions)
+            {
+                // Lấy danh sách câu trả lời cho câu hỏi hiện tại
+                var answers = await _questionRepository.GetAnswerOfQuestion(ques.Id);
+
+                // Nếu không có câu trả lời, bỏ qua câu hỏi này
+                if (answers == null || !answers.Any())
+                {
+                    return NotFound(new
+                    {
+                        EC = -1,
+                        EM = $"No answers found for question ID {ques.Id}."
+                    });
+                }
+
+                // Thêm câu hỏi và câu trả lời vào danh sách
+                listQuesAns.Add(new
+                {
+                    question = ques,
+                    answers = answers
+                });
+            }
+
+            // Trả về kết quả với cấu trúc mong muốn
             return Ok(new
             {
                 EC = 0,
-                EM = "Get question of partID=" + id + " success",
+                EM = "Get questions and answers success",
                 DT = new
                 {
-                    part,
-                    questions
+                    part = new
+                    {
+                        id = part.Id,
+                        name = part.Name,
+                        questions = listQuesAns
+                    }
                 }
             });
         }
+
 
         [HttpPost("submit")]
         public async Task<IActionResult> SubmitPart([FromBody] PartSubmissionDto request)

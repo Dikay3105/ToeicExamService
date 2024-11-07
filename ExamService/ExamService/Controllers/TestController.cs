@@ -60,7 +60,7 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
             if (ModelState.IsValid)
             {
                 await _testRepository.AddTestAsync(test);
-                return BadRequest(new
+                return Ok(new
                 {
                     EC = 0,
                     EM = "Add test success",
@@ -69,7 +69,7 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
 
             }
 
-            return BadRequest(new
+            return Ok(new
             {
                 EC = -1,
                 EM = "Add test fail",
@@ -105,7 +105,11 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
         public async Task<IActionResult> DeleteTest(int id)
         {
             await _testRepository.DeleteTestAsync(id);
-            return NoContent();
+            return Ok(new
+            {
+                EC = 0,
+                EM = "Del test success",
+            });
         }
 
         // API endpoint để lấy part cuả test theo id
