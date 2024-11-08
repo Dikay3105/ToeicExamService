@@ -146,7 +146,7 @@ namespace ExamService.ExamService.Controllers
 
                 return Ok(new
                 {
-                    EC = -1,
+                    EC = 0,
                     EM = "Success",
                     DT = histories
                 });

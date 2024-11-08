@@ -24,6 +24,7 @@ C:\Users\huhuh\source\repos\ExamService\bin\Debug\ExamService.runtimeconfig.json
 C:\Users\huhuh\source\repos\ExamService\bin\Debug\appsettings.Development.json
 C:\Users\huhuh\source\repos\ExamService\bin\Debug\appsettings.json
 C:\Users\huhuh\source\repos\ExamService\bin\Debug\ExamService.exe
+C:\Users\huhuh\source\repos\ExamService\bin\Debug\ExamService\Data\Tests_202411071420.sql
 C:\Users\huhuh\source\repos\ExamService\bin\Debug\ExamService.dll
 C:\Users\huhuh\source\repos\ExamService\bin\Debug\Microsoft.EntityFrameworkCore.dll
 C:\Users\huhuh\source\repos\ExamService\bin\Debug\CloudinaryDotNet.dll

@@ -44,64 +44,6 @@ namespace ExamService.Migrations
                     b.HasIndex("QuestionID");
 
                     b.ToTable("Answers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            IsCorrect = false,
-                            QuestionID = 1,
-                            Text = "He is eating"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            IsCorrect = true,
-                            QuestionID = 1,
-                            Text = "He is talking on the phone"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            IsCorrect = false,
-                            QuestionID = 1,
-                            Text = "He is walking"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            IsCorrect = false,
-                            QuestionID = 1,
-                            Text = "He is reading"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            IsCorrect = true,
-                            QuestionID = 2,
-                            Text = "In a conference room"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            IsCorrect = false,
-                            QuestionID = 2,
-                            Text = "In a cafe"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            IsCorrect = false,
-                            QuestionID = 2,
-                            Text = "In a park"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            IsCorrect = false,
-                            QuestionID = 2,
-                            Text = "At the airport"
-                        });
                 });
 
             modelBuilder.Entity("ToeicWeb.ExamService.ExamService.Models.History", b =>
@@ -135,28 +77,6 @@ namespace ExamService.Migrations
                     b.HasIndex("TestID");
 
                     b.ToTable("history", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            EndTime = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4091),
-                            StartTime = new DateTime(2024, 11, 2, 21, 15, 41, 495, DateTimeKind.Local).AddTicks(4086),
-                            TestID = 1,
-                            Total_Listening = 75,
-                            Total_Reading = 80,
-                            UserID = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            EndTime = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4094),
-                            StartTime = new DateTime(2024, 11, 2, 21, 15, 41, 495, DateTimeKind.Local).AddTicks(4093),
-                            TestID = 2,
-                            Total_Listening = 85,
-                            Total_Reading = 90,
-                            UserID = 2
-                        });
                 });
 
             modelBuilder.Entity("ToeicWeb.ExamService.ExamService.Models.HistoryDetail", b =>
@@ -186,40 +106,6 @@ namespace ExamService.Migrations
                     b.HasIndex("PartID");
 
                     b.ToTable("historydetail", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            HistoryID = 1,
-                            PartID = 1,
-                            TotalCorrect = 8,
-                            TotalQuestion = 10
-                        },
-                        new
-                        {
-                            Id = 2,
-                            HistoryID = 1,
-                            PartID = 2,
-                            TotalCorrect = 7,
-                            TotalQuestion = 10
-                        },
-                        new
-                        {
-                            Id = 3,
-                            HistoryID = 2,
-                            PartID = 3,
-                            TotalCorrect = 9,
-                            TotalQuestion = 10
-                        },
-                        new
-                        {
-                            Id = 4,
-                            HistoryID = 2,
-                            PartID = 4,
-                            TotalCorrect = 6,
-                            TotalQuestion = 10
-                        });
                 });
 
             modelBuilder.Entity("ToeicWeb.ExamService.ExamService.Models.Part", b =>
@@ -255,48 +141,6 @@ namespace ExamService.Migrations
                     b.HasIndex("TestID");
 
                     b.ToTable("Parts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3986),
-                            Description = "Listening Comprehension",
-                            Name = "Part 1",
-                            Number = 1,
-                            TestID = 1,
-                            UpdatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3987)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3989),
-                            Description = "Reading Comprehension",
-                            Name = "Part 2",
-                            Number = 2,
-                            TestID = 1,
-                            UpdatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3989)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3990),
-                            Description = "Listening Comprehension",
-                            Name = "Part 1",
-                            Number = 1,
-                            TestID = 2,
-                            UpdatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3991)
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4016),
-                            Description = "Reading Comprehension",
-                            Name = "Part 2",
-                            Number = 2,
-                            TestID = 2,
-                            UpdatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4016)
-                        });
                 });
 
             modelBuilder.Entity("ToeicWeb.ExamService.ExamService.Models.Question", b =>
@@ -340,44 +184,6 @@ namespace ExamService.Migrations
                     b.HasIndex("PartID");
 
                     b.ToTable("Questions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AnswerCounts = 4,
-                            CreatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4040),
-                            PartID = 1,
-                            Text = "What is he doing?",
-                            UpdatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4040)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AnswerCounts = 4,
-                            CreatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4042),
-                            PartID = 1,
-                            Text = "Where is he going?",
-                            UpdatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4043)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AnswerCounts = 4,
-                            CreatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4044),
-                            PartID = 2,
-                            Text = "What does the sign say?",
-                            UpdatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4045)
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AnswerCounts = 4,
-                            CreatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4046),
-                            PartID = 2,
-                            Text = "What is the main idea of the passage?",
-                            UpdatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4046)
-                        });
                 });
 
             modelBuilder.Entity("ToeicWeb.ExamService.ExamService.Models.Test", b =>
@@ -412,38 +218,6 @@ namespace ExamService.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tests");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3821),
-                            Description = "Mô tả bài kiểm tra 1",
-                            Difficulty = "Easy",
-                            Duration = 60,
-                            Name = "Test 1",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3837),
-                            Description = "Mô tả bài kiểm tra 2",
-                            Difficulty = "Medium",
-                            Duration = 75,
-                            Name = "Test 2",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3839),
-                            Description = "Mô tả bài kiểm tra 3",
-                            Difficulty = "Hard",
-                            Duration = 90,
-                            Name = "Test 3",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("ToeicWeb.ExamService.ExamService.Models.UserAnswer", b =>
@@ -477,45 +251,7 @@ namespace ExamService.Migrations
 
                     b.HasIndex("SelectedAnswerID");
 
-                    b.ToTable("UserAnswers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            HistoryID = 1,
-                            IsCorrect = true,
-                            QuestionID = 1,
-                            SelectedAnswerID = 2,
-                            UserID = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            HistoryID = 1,
-                            IsCorrect = true,
-                            QuestionID = 2,
-                            SelectedAnswerID = 5,
-                            UserID = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            HistoryID = 2,
-                            IsCorrect = true,
-                            QuestionID = 3,
-                            SelectedAnswerID = 11,
-                            UserID = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            HistoryID = 2,
-                            IsCorrect = true,
-                            QuestionID = 4,
-                            SelectedAnswerID = 15,
-                            UserID = 2
-                        });
+                    b.ToTable("UserAnswers", (string)null);
                 });
 
             modelBuilder.Entity("ToeicWeb.ExamService.ExamService.Models.Answer", b =>
