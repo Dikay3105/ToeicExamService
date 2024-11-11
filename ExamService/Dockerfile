@@ -6,9 +6,6 @@ WORKDIR /src
 COPY ["ExamService/ExamService.csproj", "ExamService/"]
 RUN dotnet restore "ExamService/ExamService.csproj"
 
-# Build the application and specify the output directory for the build artifacts
-RUN dotnet build "ExamService/ExamService.csproj" -c Release -o /app/build/ExamService
-
 # Stage 2: Publish the application
 FROM build AS publish
 RUN dotnet publish "ExamService/ExamService.csproj" -c Release -o /app/publish
