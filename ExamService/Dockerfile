@@ -1,36 +1,36 @@
-# This stage is used when running from VS in fast mode (Default for Debug configuration)
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
-WORKDIR /app
-EXPOSE 5000
-EXPOSE 5001
-
-# This stage is used to build the service project
+# Stage 1: Build the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+# Set environment variable for build configuration
 ARG BUILD_CONFIGURATION=Release
+
+# Set working directory
 WORKDIR /src
-COPY ["ExamService/ExamService.csproj", "ExamService/"]
+
+# Copy the ExamService project files and restore dependencies
+COPY ./ExamService/ExamService.csproj ./ExamService/
 RUN dotnet restore "./ExamService/ExamService.csproj"
-COPY . . 
-WORKDIR "/src/ExamService"
 
-# Tạo thư mục Data trước khi build để tránh lỗi không tìm thấy đường dẫn
-RUN mkdir -p /app/build/ExamService/Data
+# Copy the rest of the ExamService source code
+COPY ./ExamService ./ExamService
 
-RUN dotnet build "./ExamService.csproj" -c $BUILD_CONFIGURATION -o /app/build
+# Change to the ExamService directory
+WORKDIR /src/ExamService
 
-# This stage is used to publish the service project to be copied to the final stage
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./ExamService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+# Build the application and specify the output directory for the build artifacts
+RUN dotnet build "./ExamService.csproj" -c $BUILD_CONFIGURATION -o /app/build/ExamService
 
-# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
-FROM base AS final
+# Stage 2: Publish the application for final deployment
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+
+# Set working directory in runtime image
 WORKDIR /app
 
-# Sao chép thư mục chứa SQL scripts vào thư mục trong container
-COPY ./ExamService/ExamService/Data /app/Data
+# Copy the build artifacts from the build stage
+COPY --from=build /app/build/ExamService /app/ExamService
 
-COPY --from=publish /app/publish .
+# Expose any necessary ports (adjust as per your configuration)
+EXPOSE 5000
 
-ENTRYPOINT ["dotnet", "ExamService.dll"]
+# Define the entry point for the container
+ENTRYPOINT ["dotnet", "ExamService/ExamService.dll"]
