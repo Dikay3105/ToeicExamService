@@ -1,39 +1,24 @@
 # Stage 1: Build the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-
-# Set environment variable for build configuration
-ARG BUILD_CONFIGURATION=Release
-
-# Set working directory
 WORKDIR /src
 
-# Copy the ExamService project files and restore dependencies
-COPY ./ExamService/ExamService.csproj ./ExamService/
-RUN dotnet restore "./ExamService/ExamService.csproj"
-
-# Copy the rest of the ExamService source code
-COPY ./ExamService ./ExamService
-
-# Create the target directory for SQL files before build
-RUN mkdir -p /app/build/ExamService/ExamService/Data
-
-# Change to the ExamService directory
-WORKDIR /src/ExamService
+# Copy the csproj and restore the dependencies
+COPY ["ExamService/ExamService.csproj", "ExamService/"]
+RUN dotnet restore "ExamService/ExamService.csproj"
 
 # Build the application and specify the output directory for the build artifacts
-RUN dotnet build "./ExamService.csproj" -c $BUILD_CONFIGURATION -o /app/build/ExamService
+RUN dotnet build "ExamService/ExamService.csproj" -c Release -o /app/build/ExamService
 
-# Stage 2: Publish the application for final deployment
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+# Stage 2: Publish the application
+FROM build AS publish
+RUN dotnet publish "ExamService/ExamService.csproj" -c Release -o /app/publish
 
-# Set working directory in runtime image
+# Stage 3: Create final runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 
-# Copy the build artifacts from the build stage
-COPY --from=build /app/build/ExamService /app/ExamService
+# Copy the published application from the publish stage
+COPY --from=publish /app/publish .
 
-# Expose any necessary ports (adjust as per your configuration)
-EXPOSE 5000
-
-# Define the entry point for the container
-ENTRYPOINT ["dotnet", "ExamService/ExamService.dll"]
+# Set the entry point to run the application
+ENTRYPOINT ["dotnet", "ExamService.dll"]
