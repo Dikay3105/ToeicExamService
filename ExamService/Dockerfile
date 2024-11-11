@@ -13,6 +13,10 @@ COPY ["ExamService/ExamService.csproj", "ExamService/"]
 RUN dotnet restore "./ExamService/ExamService.csproj"
 COPY . . 
 WORKDIR "/src/ExamService"
+
+# Tạo thư mục Data trước khi build để tránh lỗi không tìm thấy đường dẫn
+RUN mkdir -p /app/build/ExamService/Data
+
 RUN dotnet build "./ExamService.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
@@ -23,9 +27,6 @@ RUN dotnet publish "./ExamService.csproj" -c $BUILD_CONFIGURATION -o /app/publis
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
-
-# Tạo thư mục Data trước khi sao chép
-RUN mkdir -p /app/Data
 
 # Sao chép thư mục chứa SQL scripts vào thư mục trong container
 COPY ./ExamService/ExamService/Data /app/Data
