@@ -19,11 +19,13 @@ C:\Users\PC\source\repos\ExamService\bin\Debug\ExamService.pdb
 C:\Users\PC\source\repos\ExamService\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 C:\Users\PC\source\repos\ExamService\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\PC\source\repos\ExamService\obj\Debug\docker-c.35A3FFBA.Up2Date
+C:\Users\PC\source\repos\ExamService\bin\Debug\ExamService\Data\Tests_202411071420.sql
 C:\Users\huhuh\source\repos\ExamService\bin\Debug\ExamService.deps.json
 C:\Users\huhuh\source\repos\ExamService\bin\Debug\ExamService.runtimeconfig.json
 C:\Users\huhuh\source\repos\ExamService\bin\Debug\appsettings.Development.json
 C:\Users\huhuh\source\repos\ExamService\bin\Debug\appsettings.json
 C:\Users\huhuh\source\repos\ExamService\bin\Debug\ExamService.exe
+C:\Users\huhuh\source\repos\ExamService\bin\Debug\ExamService\Data\Tests_202411071420.sql
 C:\Users\huhuh\source\repos\ExamService\bin\Debug\ExamService.dll
 C:\Users\huhuh\source\repos\ExamService\bin\Debug\Microsoft.EntityFrameworkCore.dll
 C:\Users\huhuh\source\repos\ExamService\bin\Debug\CloudinaryDotNet.dll

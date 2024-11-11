@@ -4,12 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace ExamService.Migrations
 {
     /// <inheritdoc />
-    public partial class dbinit : Migration
+    public partial class initDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -215,80 +213,22 @@ namespace ExamService.Migrations
             migrationBuilder.InsertData(
                 table: "Tests",
                 columns: new[] { "Id", "CreatedAt", "Description", "Difficulty", "Duration", "Name", "UpdatedAt" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3821), "Mô tả bài kiểm tra 1", "Easy", 60, "Test 1", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3837), "Mô tả bài kiểm tra 2", "Medium", 75, "Test 2", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3839), "Mô tả bài kiểm tra 3", "Hard", 90, "Test 3", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
-                });
+                values: new object[] { -1, new DateTime(2024, 11, 11, 14, 22, 50, 151, DateTimeKind.Local).AddTicks(1480), "null", "Easy", 60, "Test null", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.InsertData(
                 table: "Parts",
                 columns: new[] { "Id", "CreatedAt", "Description", "Name", "Number", "TestID", "UpdatedAt" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3986), "Listening Comprehension", "Part 1", 1, 1, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3987) },
-                    { 2, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3989), "Reading Comprehension", "Part 2", 2, 1, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3989) },
-                    { 3, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3990), "Listening Comprehension", "Part 1", 1, 2, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(3991) },
-                    { 4, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4016), "Reading Comprehension", "Part 2", 2, 2, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4016) }
-                });
-
-            migrationBuilder.InsertData(
-                table: "history",
-                columns: new[] { "Id", "EndTime", "StartTime", "TestID", "Total_Listening", "Total_Reading", "UserID" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4091), new DateTime(2024, 11, 2, 21, 15, 41, 495, DateTimeKind.Local).AddTicks(4086), 1, 75, 80, 1 },
-                    { 2, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4094), new DateTime(2024, 11, 2, 21, 15, 41, 495, DateTimeKind.Local).AddTicks(4093), 2, 85, 90, 2 }
-                });
+                values: new object[] { -1, new DateTime(2024, 11, 11, 14, 22, 50, 151, DateTimeKind.Local).AddTicks(1595), "null", "Part null", 1, -1, new DateTime(2024, 11, 11, 14, 22, 50, 151, DateTimeKind.Local).AddTicks(1597) });
 
             migrationBuilder.InsertData(
                 table: "Questions",
                 columns: new[] { "Id", "AnswerCounts", "AudioName", "AudioPath", "CreatedAt", "ImageName", "ImagePath", "PartID", "Text", "UpdatedAt" },
-                values: new object[,]
-                {
-                    { 1, 4, null, null, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4040), null, null, 1, "What is he doing?", new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4040) },
-                    { 2, 4, null, null, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4042), null, null, 1, "Where is he going?", new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4043) },
-                    { 3, 4, null, null, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4044), null, null, 2, "What does the sign say?", new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4045) },
-                    { 4, 4, null, null, new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4046), null, null, 2, "What is the main idea of the passage?", new DateTime(2024, 11, 2, 23, 15, 41, 495, DateTimeKind.Local).AddTicks(4046) }
-                });
-
-            migrationBuilder.InsertData(
-                table: "historydetail",
-                columns: new[] { "Id", "HistoryID", "PartID", "TotalCorrect", "TotalQuestion" },
-                values: new object[,]
-                {
-                    { 1, 1, 1, 8, 10 },
-                    { 2, 1, 2, 7, 10 },
-                    { 3, 2, 3, 9, 10 },
-                    { 4, 2, 4, 6, 10 }
-                });
+                values: new object[] { -1, 4, null, null, new DateTime(2024, 11, 11, 14, 22, 50, 151, DateTimeKind.Local).AddTicks(1615), null, null, -1, "What is he doing?", new DateTime(2024, 11, 11, 14, 22, 50, 151, DateTimeKind.Local).AddTicks(1616) });
 
             migrationBuilder.InsertData(
                 table: "Answers",
                 columns: new[] { "Id", "IsCorrect", "QuestionID", "Text" },
-                values: new object[,]
-                {
-                    { 1, false, 1, "He is eating" },
-                    { 2, true, 1, "He is talking on the phone" },
-                    { 3, false, 1, "He is walking" },
-                    { 4, false, 1, "He is reading" },
-                    { 5, true, 2, "In a conference room" },
-                    { 6, false, 2, "In a cafe" },
-                    { 7, false, 2, "In a park" },
-                    { 8, false, 2, "At the airport" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "UserAnswers",
-                columns: new[] { "Id", "HistoryID", "IsCorrect", "QuestionID", "SelectedAnswerID", "UserID" },
-                values: new object[,]
-                {
-                    { 3, 2, true, 3, 11, 2 },
-                    { 4, 2, true, 4, 15, 2 },
-                    { 1, 1, true, 1, 2, 1 },
-                    { 2, 1, true, 2, 5, 1 }
-                });
+                values: new object[] { -1, false, -1, "He is eating" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Answers_QuestionID",

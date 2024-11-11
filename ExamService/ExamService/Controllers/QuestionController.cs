@@ -12,13 +12,15 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
     public class QuestionController : Controller
     {
         private readonly IQuestionRepository _questionRepository;
+        private readonly IAnswerRepository _answerRepository;
         private readonly ExamDbContext _context;
 
         private readonly Cloudinary _cloudinary;
 
-        public QuestionController(IQuestionRepository questionRepository, ExamDbContext context, IConfiguration configuration)
+        public QuestionController(IQuestionRepository questionRepository, ExamDbContext context, IConfiguration configuration, IAnswerRepository answerRepository)
         {
             _questionRepository = questionRepository;
+            _answerRepository = answerRepository;
             _context = context;
 
             // Cấu hình Cloudinary
@@ -28,6 +30,7 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                 configuration["Cloudinary:ApiSecret"]
             );
             _cloudinary = new Cloudinary(cloudinaryAccount);
+            _answerRepository = answerRepository;
         }
 
         //Get all question
@@ -266,6 +269,7 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                     };
                     var uploadResult = await _cloudinary.UploadAsync(uploadParams);
                     existingQuestion.ImagePath = uploadResult.SecureUrl.AbsoluteUri; // Lưu trữ URL của hình ảnh mới
+                    existingQuestion.ImageName = model.image.FileName;
                     hasUpdates = true; // Đánh dấu rằng đã có sự thay đổi
                 }
             }
@@ -293,6 +297,7 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                     };
                     var uploadResult = await _cloudinary.UploadAsync(uploadParams);
                     existingQuestion.AudioPath = uploadResult.SecureUrl.AbsoluteUri; // Lưu trữ URL của âm thanh mới
+                    existingQuestion.AudioName = model.audio.FileName;
                     hasUpdates = true; // Đánh dấu rằng đã có sự thay đổi
                 }
             }
@@ -319,6 +324,74 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
             });
         }
 
+        [HttpPut("UpdateQuestionWithAnswer/{id}")]
+        public async Task<IActionResult> UpdateAnswers(int id, [FromBody] List<Answer> newAnswers)
+        {
+            // Lấy câu hỏi từ cơ sở dữ liệu
+            var question = await _questionRepository.GetQuestionById(id);
+            if (question == null)
+            {
+                return NotFound(new
+                {
+                    EC = -1,
+                    EM = "No question found for the given question ID."
+                });
+            }
+
+            // Lấy câu trả lời hiện tại của câu hỏi
+            var existingAnswers = await _questionRepository.GetAnswerOfQuestion(id);
+
+            // Tạo danh sách ID câu trả lời mới
+            var newAnswerIds = newAnswers.Select(a => a.Id).ToList();
+
+            // Xóa những câu trả lời cũ không còn tồn tại trong danh sách mới
+            var answersToDelete = existingAnswers.Where(e => !newAnswerIds.Contains(e.Id)).ToList();
+            foreach (var answer in answersToDelete)
+            {
+                await _answerRepository.DeleteAnswer(answer.Id);
+            }
+
+            // Cập nhật hoặc thêm mới những câu trả lời
+            foreach (var newAnswer in newAnswers)
+            {
+                var existingAnswer = existingAnswers.FirstOrDefault(a => a.Id == newAnswer.Id);
+
+                if (existingAnswer != null)
+                {
+                    // Nếu câu trả lời đã tồn tại, chỉ cần cập nhật nếu có thay đổi
+                    if (!string.Equals(existingAnswer.Text, newAnswer.Text, StringComparison.OrdinalIgnoreCase) ||
+                        existingAnswer.IsCorrect != newAnswer.IsCorrect)
+                    {
+                        existingAnswer.Text = newAnswer.Text;  // Cập nhật câu trả lời
+                        existingAnswer.IsCorrect = newAnswer.IsCorrect;  // Cập nhật đúng/sai câu trả lời
+
+                        await _answerRepository.UpdateAnswer(existingAnswer);
+                    }
+                }
+                else
+                {
+                    // Nếu câu trả lời không tồn tại, thêm mới
+                    newAnswer.QuestionID = id;  // Đảm bảo rằng câu trả lời mới thuộc về câu hỏi hiện tại
+                    newAnswer.Id = 0;
+
+                    // Kiểm tra thêm câu trả lời mới
+                    Console.WriteLine($"Creating new answer for QuestionID {id} with IsCorrect: {newAnswer.IsCorrect}");
+
+                    await _answerRepository.CreateAnswer(newAnswer);
+                }
+            }
+
+
+            return Ok(new
+            {
+                EC = 0,
+                EM = "Update answers success",
+                DT = newAnswers
+            });
+        }
+
+
+
 
     }
 
@@ -328,8 +401,8 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
     {
         public int PartID { get; set; }
         public string Text { get; set; }
-        public IFormFile image { get; set; }
-        public IFormFile audio { get; set; }
+        public IFormFile? image { get; set; }
+        public IFormFile? audio { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public int AnswerCounts { get; set; }

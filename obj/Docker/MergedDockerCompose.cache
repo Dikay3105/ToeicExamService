@@ -1,0 +1,79 @@
+name: dockercompose8037591149890734878
+services:
+  examservice:
+    build:
+      context: C:\Users\huhuh\source\repos\ExamService
+      dockerfile: ExamService/Dockerfile
+    depends_on:
+      toeicdb:
+        condition: service_started
+        required: true
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "5000"
+      ASPNETCORE_HTTPS_PORTS: "5001"
+    image: examservice
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 5000
+        published: "5000"
+        protocol: tcp
+      - mode: ingress
+        target: 5001
+        published: "5001"
+        protocol: tcp
+      - mode: ingress
+        target: 5000
+        protocol: tcp
+      - mode: ingress
+        target: 5001
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: C:\Users\huhuh\AppData\Roaming/Microsoft/UserSecrets
+        target: /home/app/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\huhuh\AppData\Roaming/ASP.NET/Https
+        target: /home/app/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+  toeicdb:
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: toeicweb
+      MYSQL_ROOT_PASSWORD: ""
+    healthcheck:
+      test:
+        - CMD
+        - mysqladmin
+        - ping
+        - -h
+        - localhost
+      timeout: 5s
+      interval: 10s
+      retries: 5
+    image: mysql:8.0
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 3306
+        published: "3308"
+        protocol: tcp
+    volumes:
+      - type: volume
+        source: mysql_data
+        target: /var/lib/mysql
+        volume: {}
+networks:
+  default:
+    name: dockercompose8037591149890734878_default
+volumes:
+  mysql_data:
+    name: dockercompose8037591149890734878_mysql_data

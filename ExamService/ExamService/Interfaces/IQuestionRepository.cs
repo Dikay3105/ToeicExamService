@@ -10,5 +10,7 @@ namespace ToeicWeb.ExamService.ExamService.Interfaces
         Task AddQuestion(Question question);
         Task UpdateQuestion(Question question);
         Task DeleteQuestion(int id);
+        Task DeleteAnswersByQuestionId(int questionId);
+
     }
 }

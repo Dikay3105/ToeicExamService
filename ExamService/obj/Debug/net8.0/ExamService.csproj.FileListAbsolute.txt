@@ -105,9 +105,11 @@ C:\Users\PC\source\repos\ExamService\ExamService\obj\Debug\net8.0\refint\ExamSer
 C:\Users\PC\source\repos\ExamService\ExamService\obj\Debug\net8.0\ExamService.pdb
 C:\Users\PC\source\repos\ExamService\ExamService\obj\Debug\net8.0\ExamService.genruntimeconfig.cache
 C:\Users\PC\source\repos\ExamService\ExamService\obj\Debug\net8.0\ref\ExamService.dll
+C:\Users\PC\source\repos\ExamService\ExamService\bin\Debug\net8.0\ExamService\Data\Tests_202411071420.sql
 C:\Users\huhuh\source\repos\ExamService\ExamService\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\huhuh\source\repos\ExamService\ExamService\bin\Debug\net8.0\appsettings.json
 C:\Users\huhuh\source\repos\ExamService\ExamService\bin\Debug\net8.0\ExamService.exe
+C:\Users\huhuh\source\repos\ExamService\ExamService\bin\Debug\net8.0\ExamService\Data\Tests_202411071420.sql
 C:\Users\huhuh\source\repos\ExamService\ExamService\bin\Debug\net8.0\ExamService.deps.json
 C:\Users\huhuh\source\repos\ExamService\ExamService\bin\Debug\net8.0\ExamService.runtimeconfig.json
 C:\Users\huhuh\source\repos\ExamService\ExamService\bin\Debug\net8.0\ExamService.dll

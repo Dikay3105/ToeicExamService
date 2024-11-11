@@ -55,6 +55,21 @@ namespace ToeicWeb.ExamService.ExamService.Repository
             await _context.Questions.AddAsync(question);
             await _context.SaveChangesAsync();
         }
+        public async Task DeleteAnswersByQuestionId(int questionId)
+        {
+            var answers = await _context.Answers.Where(a => a.QuestionID == questionId).ToListAsync();
+            if (answers.Any())
+            {
+                _context.Answers.RemoveRange(answers);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task AddAnswer(Answer answer)
+        {
+            _context.Answers.Add(answer);
+            await _context.SaveChangesAsync();
+        }
 
     }
 }
