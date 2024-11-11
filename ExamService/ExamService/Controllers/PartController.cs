@@ -77,6 +77,7 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
             }); // Return the found user
         }
 
+        //Lấy các câu hỏi của part theo part id
         [HttpGet("question/{id}")]
         public async Task<IActionResult> GetAnswersOfQuestion(int id)
         {
@@ -115,10 +116,15 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                 // Nếu không có câu trả lời, bỏ qua câu hỏi này
                 if (answers == null || !answers.Any())
                 {
-                    return NotFound(new
+                    //return NotFound(new
+                    //{
+                    //    EC = -1,
+                    //    EM = $"No answers found for question ID {ques.Id}."
+                    //});
+                    listQuesAns.Add(new
                     {
-                        EC = -1,
-                        EM = $"No answers found for question ID {ques.Id}."
+                        question = ques,
+                        answers = new List<object>() // Mảng rỗng
                     });
                 }
 
@@ -147,7 +153,64 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
             });
         }
 
+        // Lấy các câu hỏi của part theo part id
+        [HttpGet("question2/{id}")]
+        public async Task<IActionResult> GetQuestionsOfPart(int id)
+        {
+            // Lấy thông tin phần từ repository
+            var part = await _partRepository.GetPartById(id);
+            if (part == null)
+            {
+                return NotFound(new
+                {
+                    EC = -1,
+                    EM = "No part found for the given part ID."
+                });
+            }
 
+            // Lấy danh sách câu hỏi của phần
+            var questions = await _partRepository.GetQuestionOfPart(id);
+
+            // Kiểm tra nếu không có câu hỏi nào
+            if (questions == null || !questions.Any())
+            {
+                return NotFound(new
+                {
+                    EC = -1,
+                    EM = "No questions found for the given part ID."
+                });
+            }
+
+            // Thêm số thứ tự cho mỗi câu hỏi
+            var questionsWithOrder = questions.Select((question, index) => new
+            {
+                Order = index + 1, // Thứ tự câu hỏi, bắt đầu từ 1
+                question.Id,
+                question.Text,
+                question.AudioName,
+                question.AudioPath,
+                question.ImageName,
+                question.ImagePath,
+                question.AnswerCounts,
+                question.CreatedAt,
+                question.UpdatedAt
+            }).ToList();
+
+            // Trả về kết quả với danh sách câu hỏi đã có số thứ tự
+            return Ok(new
+            {
+                EC = 0,
+                EM = "Get questions success",
+                DT = new
+                {
+                    part,
+                    questions = questionsWithOrder
+                }
+            });
+        }
+
+
+        //Nộp câu trả lời của user theo từng part
         [HttpPost("submit")]
         public async Task<IActionResult> SubmitPart([FromBody] PartSubmissionDto request)
         {
@@ -217,6 +280,116 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                 }
             });
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatePart(int id, [FromBody] string description)
+        {
+            // Kiểm tra xem part có tồn tại không
+            var existingPart = await _partRepository.GetPartById(id);
+            if (existingPart == null)
+            {
+                return NotFound(new
+                {
+                    EC = -1,
+                    EM = "Part not found",
+                    DT = ""
+                });
+            }
+
+            // Kiểm tra nếu không có sự thay đổi mô tả
+            if (existingPart.Description == description)
+            {
+                return Ok(new
+                {
+                    EC = 0,
+                    EM = "No changes detected",
+                    DT = existingPart
+                });
+            }
+
+            // Cập nhật mô tả của part
+            existingPart.Description = description;
+            existingPart.UpdatedAt = DateTime.UtcNow; // Giả sử bạn có thuộc tính này
+
+            // Lưu các thay đổi vào cơ sở dữ liệu
+            try
+            {
+                await _partRepository.UpdatePartAsync(existingPart);
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi trong quá trình cập nhật
+                return BadRequest(new
+                {
+                    EC = -1,
+                    EM = "Failed to update part",
+                    DT = ex.Message
+                });
+            }
+
+            // Trả về kết quả cập nhật thành công
+            return Ok(new
+            {
+                EC = 0,
+                EM = "Update part success",
+                DT = existingPart
+            });
+        }
+
+        // API để thêm mới Part
+        [HttpPost]
+        public async Task<IActionResult> CreatePart([FromBody] Part part)
+        {
+            if (part == null)
+            {
+                return BadRequest(new
+                {
+                    EC = -1,
+                    EM = "Invalid part data",
+                });
+            }
+
+            // Kiểm tra các trường bắt buộc
+            if (string.IsNullOrEmpty(part.Name) || string.IsNullOrEmpty(part.Description))
+            {
+                return BadRequest(new
+                {
+                    EC = -1,
+                    EM = "Part name and description are required",
+                });
+            }
+
+            try
+            {
+                // Cập nhật CreatedAt và UpdatedAt với ngày giờ hiện tại
+                part.CreatedAt = DateTime.UtcNow;
+                part.UpdatedAt = DateTime.UtcNow;
+
+                // Lưu Part mới vào cơ sở dữ liệu
+                await _partRepository.AddPartAsync(part);
+
+                // Trả về kết quả thành công
+                return Ok(new
+                {
+                    EC = 0,
+                    EM = "Create part success",
+                    DT = part
+                });
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi trong quá trình thêm mới Part
+                return BadRequest(new
+                {
+                    EC = -1,
+                    EM = "Failed to create part",
+                    DT = ex.Message
+                });
+            }
+        }
+
+
+
 
 
 

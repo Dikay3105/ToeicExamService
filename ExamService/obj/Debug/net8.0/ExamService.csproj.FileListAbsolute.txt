@@ -213,3 +213,4 @@ C:\Users\huhuh\source\repos\ExamService\ExamService\obj\Debug\net8.0\refint\Exam
 C:\Users\huhuh\source\repos\ExamService\ExamService\obj\Debug\net8.0\ExamService.pdb
 C:\Users\huhuh\source\repos\ExamService\ExamService\obj\Debug\net8.0\ExamService.genruntimeconfig.cache
 C:\Users\huhuh\source\repos\ExamService\ExamService\obj\Debug\net8.0\ref\ExamService.dll
+C:\Users\PC\source\repos\ExamService\ExamService\bin\Debug\net8.0\ExamService\Data\Tests_202411071420.sql

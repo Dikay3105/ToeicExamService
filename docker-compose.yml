@@ -7,6 +7,8 @@ services:
     ports:
       - "5000:5000"
       - "5001:5001"
+    depends_on:
+      - toeicdb
 
   toeicdb:
     image: mysql:8.0
@@ -15,9 +17,14 @@ services:
        MYSQL_DATABASE: toeicweb
        MYSQL_ROOT_PASSWORD: ""
     ports:
-      - "3308:3306"  # Changed port mapping to avoid conflict
+      - "3308:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   mysql_data:

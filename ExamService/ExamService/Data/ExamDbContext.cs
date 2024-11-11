@@ -146,6 +146,42 @@ namespace ToeicWeb.ExamService.ExamService.Data
             //        new HistoryDetail { Id = 3, PartID = 3, HistoryID = 2, TotalQuestion = 10, TotalCorrect = 9 },
             //        new HistoryDetail { Id = 4, PartID = 4, HistoryID = 2, TotalQuestion = 10, TotalCorrect = 6 }
             //    );
+
+
+
+
+
+
+
+
+
+
+
+            // Dữ liệu cho bảng Test
+            modelBuilder.Entity<Test>().HasData(
+                new Test { Id = -1, Name = "Test null", Description = "null", Difficulty = "Easy", Duration = 60, CreatedAt = DateTime.Now }
+                          );
+            modelBuilder.Entity<Part>().HasData(
+                            new Part { Id = -1, Name = "Part null", Number = 1, Description = "null", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, TestID = -1 }
+
+                                        );
+
+
+            // Dữ liệu cho bảng Questions
+            modelBuilder.Entity<Question>().HasData(
+                new Question { Id = -1, PartID = -1, Text = "What is he doing?", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, AnswerCounts = 4 }
+
+            );
+            // Dữ liệu cho bảng Answers
+            modelBuilder.Entity<Answer>().HasData(
+                new Answer { Id = -1, QuestionID = -1, Text = "He is eating", IsCorrect = false }
+
+            );
+
+
+
+
+
         }
 
 

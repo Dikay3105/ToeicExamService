@@ -161,5 +161,57 @@ namespace ExamService.ExamService.Controllers
                 });
             }
         }
+
+        //// API để lấy lịch sử kết hợp theo userId và hisId
+        //[HttpGet("PartOfHistory/{userId}/{hisId}")]
+        //public async Task<IActionResult> GetCombinedHistories2(int userId, int hisId)
+        //{
+        //    try
+        //    {
+        //        IEnumerable<HistoryDto> histories = await _historyRepository.GetCombinedHistoriesWithQuestionsAndAnswersAsync(userId, hisId);
+
+        //        if (histories == null || !histories.Any())
+        //        {
+        //            return Ok(new
+        //            {
+        //                EC = -1,
+        //                EM = "Không tìm thấy lịch sử."
+        //            });
+        //        }
+
+        //        return Ok(new
+        //        {
+        //            EC = 0,
+        //            EM = "Success",
+        //            DT = histories.Select(history => new
+        //            {
+        //                history.Id,
+        //                history.Date,
+        //                history.Score,
+        //                Questions = history.Questions.Select(question => new
+        //                {
+        //                    question.QuestionId,
+        //                    question.Content,
+        //                    Answers = question.Answers.Select(answer => new
+        //                    {
+        //                        answer.AnswerId,
+        //                        answer.Content,
+        //                        answer.IsCorrect // Nếu muốn biết đáp án đúng hay không (tùy chọn)
+        //                    }).ToList()
+        //                }).ToList()
+        //            })
+        //        });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Xử lý lỗi khi có exception
+        //        return Ok(new
+        //        {
+        //            EC = -1,
+        //            EM = "Đã xảy ra lỗi khi lấy dữ liệu."
+        //        });
+        //    }
+        //}
+
     }
 }

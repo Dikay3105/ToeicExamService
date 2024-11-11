@@ -319,6 +319,48 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
             });
         }
 
+        [HttpPut("UpdateQuestionWithAnswer/{id}")]
+        public async Task<IActionResult> DeleteAllAnswersAndAddNew(int id, [FromBody] List<Answer> newAnswers)
+        {
+            // Lấy câu hỏi từ cơ sở dữ liệu
+            var question = await _questionRepository.GetQuestionById(id);
+            if (question == null)
+            {
+                return NotFound(new
+                {
+                    EC = -1,
+                    EM = "No question found for the given question ID."
+                });
+            }
+
+            // Xóa tất cả các câu trả lời cũ của câu hỏi
+            await _questionRepository.DeleteAnswersByQuestionId(id);
+
+            // Kiểm tra và thêm danh sách câu trả lời mới
+            if (newAnswers != null && newAnswers.Any())
+            {
+                foreach (var answer in newAnswers)
+                {
+                    answer.QuestionID = id; // Đảm bảo rằng câu trả lời mới thuộc về câu hỏi hiện tại
+                    await _questionRepository.AddAnswer(answer);
+                }
+
+                return Ok(new
+                {
+                    EC = 0,
+                    EM = "Delete all answers and add new answers success",
+                    DT = newAnswers
+                });
+            }
+
+            return BadRequest(new
+            {
+                EC = -1,
+                EM = "No new answers provided."
+            });
+        }
+
+
 
     }
 

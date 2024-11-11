@@ -29,5 +29,21 @@ namespace ToeicWeb.ExamService.ExamService.Repository
 
             return parts;
         }
+        public async Task UpdatePartAsync(Part part)
+        {
+            // Đánh dấu đối tượng Part là đã thay đổi
+            _context.Parts.Update(part);
+
+            // Lưu các thay đổi vào cơ sở dữ liệu
+            await _context.SaveChangesAsync();
+        }
+
+        // Add part
+        public async Task AddPartAsync(Part part)
+        {
+            await _context.Parts.AddAsync(part);
+            await _context.SaveChangesAsync();
+        }
+
     }
 }
