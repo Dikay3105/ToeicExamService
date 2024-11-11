@@ -6,8 +6,13 @@ WORKDIR /src
 COPY ["ExamService/ExamService.csproj", "ExamService/"]
 RUN dotnet restore "ExamService/ExamService.csproj"
 
-# Copy everything else and build the project
+# Copy the rest of the files
 COPY . .
+
+# Tạo thư mục con nếu nó chưa tồn tại
+RUN mkdir -p /app/build/ExamService/Data
+
+# Build the application
 WORKDIR "/src/ExamService"
 RUN dotnet build "ExamService.csproj" -c Release -o /app/build
 
