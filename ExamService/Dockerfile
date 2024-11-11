@@ -14,6 +14,9 @@ RUN dotnet restore "./ExamService/ExamService.csproj"
 # Copy the rest of the ExamService source code
 COPY ./ExamService ./ExamService
 
+# Create the target directory for SQL files before build
+RUN mkdir -p /app/build/ExamService/ExamService/Data
+
 # Change to the ExamService directory
 WORKDIR /src/ExamService
 
