@@ -12,6 +12,10 @@ services:
         com.microsoft.visual-studio.project-name: ExamService
       target: base
     container_name: ExamService
+    depends_on:
+      toeicdb:
+        condition: service_started
+        required: true
     entrypoint:
       - dotnet
       - --roll-forward
@@ -118,6 +122,16 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_DATABASE: toeicweb
       MYSQL_ROOT_PASSWORD: ""
+    healthcheck:
+      test:
+        - CMD
+        - mysqladmin
+        - ping
+        - -h
+        - localhost
+      timeout: 5s
+      interval: 10s
+      retries: 5
     image: mysql:8.0
     networks:
       default: null

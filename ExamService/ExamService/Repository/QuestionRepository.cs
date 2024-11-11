@@ -71,7 +71,5 @@ namespace ToeicWeb.ExamService.ExamService.Repository
             await _context.SaveChangesAsync();
         }
 
-
-
     }
 }

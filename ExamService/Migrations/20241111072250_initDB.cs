@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ExamService.Migrations
 {
     /// <inheritdoc />
-    public partial class initdb : Migration
+    public partial class initDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -209,6 +209,26 @@ namespace ExamService.Migrations
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.InsertData(
+                table: "Tests",
+                columns: new[] { "Id", "CreatedAt", "Description", "Difficulty", "Duration", "Name", "UpdatedAt" },
+                values: new object[] { -1, new DateTime(2024, 11, 11, 14, 22, 50, 151, DateTimeKind.Local).AddTicks(1480), "null", "Easy", 60, "Test null", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "Parts",
+                columns: new[] { "Id", "CreatedAt", "Description", "Name", "Number", "TestID", "UpdatedAt" },
+                values: new object[] { -1, new DateTime(2024, 11, 11, 14, 22, 50, 151, DateTimeKind.Local).AddTicks(1595), "null", "Part null", 1, -1, new DateTime(2024, 11, 11, 14, 22, 50, 151, DateTimeKind.Local).AddTicks(1597) });
+
+            migrationBuilder.InsertData(
+                table: "Questions",
+                columns: new[] { "Id", "AnswerCounts", "AudioName", "AudioPath", "CreatedAt", "ImageName", "ImagePath", "PartID", "Text", "UpdatedAt" },
+                values: new object[] { -1, 4, null, null, new DateTime(2024, 11, 11, 14, 22, 50, 151, DateTimeKind.Local).AddTicks(1615), null, null, -1, "What is he doing?", new DateTime(2024, 11, 11, 14, 22, 50, 151, DateTimeKind.Local).AddTicks(1616) });
+
+            migrationBuilder.InsertData(
+                table: "Answers",
+                columns: new[] { "Id", "IsCorrect", "QuestionID", "Text" },
+                values: new object[] { -1, false, -1, "He is eating" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Answers_QuestionID",

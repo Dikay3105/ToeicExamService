@@ -12,13 +12,15 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
     public class QuestionController : Controller
     {
         private readonly IQuestionRepository _questionRepository;
+        private readonly IAnswerRepository _answerRepository;
         private readonly ExamDbContext _context;
 
         private readonly Cloudinary _cloudinary;
 
-        public QuestionController(IQuestionRepository questionRepository, ExamDbContext context, IConfiguration configuration)
+        public QuestionController(IQuestionRepository questionRepository, ExamDbContext context, IConfiguration configuration, IAnswerRepository answerRepository)
         {
             _questionRepository = questionRepository;
+            _answerRepository = answerRepository;
             _context = context;
 
             // Cấu hình Cloudinary
@@ -28,6 +30,7 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                 configuration["Cloudinary:ApiSecret"]
             );
             _cloudinary = new Cloudinary(cloudinaryAccount);
+            _answerRepository = answerRepository;
         }
 
         //Get all question
@@ -266,6 +269,7 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                     };
                     var uploadResult = await _cloudinary.UploadAsync(uploadParams);
                     existingQuestion.ImagePath = uploadResult.SecureUrl.AbsoluteUri; // Lưu trữ URL của hình ảnh mới
+                    existingQuestion.ImageName = model.image.FileName;
                     hasUpdates = true; // Đánh dấu rằng đã có sự thay đổi
                 }
             }
@@ -293,6 +297,7 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                     };
                     var uploadResult = await _cloudinary.UploadAsync(uploadParams);
                     existingQuestion.AudioPath = uploadResult.SecureUrl.AbsoluteUri; // Lưu trữ URL của âm thanh mới
+                    existingQuestion.AudioName = model.audio.FileName;
                     hasUpdates = true; // Đánh dấu rằng đã có sự thay đổi
                 }
             }
@@ -320,7 +325,7 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
         }
 
         [HttpPut("UpdateQuestionWithAnswer/{id}")]
-        public async Task<IActionResult> DeleteAllAnswersAndAddNew(int id, [FromBody] List<Answer> newAnswers)
+        public async Task<IActionResult> UpdateAnswers(int id, [FromBody] List<Answer> newAnswers)
         {
             // Lấy câu hỏi từ cơ sở dữ liệu
             var question = await _questionRepository.GetQuestionById(id);
@@ -333,32 +338,58 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
                 });
             }
 
-            // Xóa tất cả các câu trả lời cũ của câu hỏi
-            await _questionRepository.DeleteAnswersByQuestionId(id);
+            // Lấy câu trả lời hiện tại của câu hỏi
+            var existingAnswers = await _questionRepository.GetAnswerOfQuestion(id);
 
-            // Kiểm tra và thêm danh sách câu trả lời mới
-            if (newAnswers != null && newAnswers.Any())
+            // Tạo danh sách ID câu trả lời mới
+            var newAnswerIds = newAnswers.Select(a => a.Id).ToList();
+
+            // Xóa những câu trả lời cũ không còn tồn tại trong danh sách mới
+            var answersToDelete = existingAnswers.Where(e => !newAnswerIds.Contains(e.Id)).ToList();
+            foreach (var answer in answersToDelete)
             {
-                foreach (var answer in newAnswers)
-                {
-                    answer.QuestionID = id; // Đảm bảo rằng câu trả lời mới thuộc về câu hỏi hiện tại
-                    await _questionRepository.AddAnswer(answer);
-                }
-
-                return Ok(new
-                {
-                    EC = 0,
-                    EM = "Delete all answers and add new answers success",
-                    DT = newAnswers
-                });
+                await _answerRepository.DeleteAnswer(answer.Id);
             }
 
-            return BadRequest(new
+            // Cập nhật hoặc thêm mới những câu trả lời
+            foreach (var newAnswer in newAnswers)
             {
-                EC = -1,
-                EM = "No new answers provided."
+                var existingAnswer = existingAnswers.FirstOrDefault(a => a.Id == newAnswer.Id);
+
+                if (existingAnswer != null)
+                {
+                    // Nếu câu trả lời đã tồn tại, chỉ cần cập nhật nếu có thay đổi
+                    if (!string.Equals(existingAnswer.Text, newAnswer.Text, StringComparison.OrdinalIgnoreCase) ||
+                        existingAnswer.IsCorrect != newAnswer.IsCorrect)
+                    {
+                        existingAnswer.Text = newAnswer.Text;  // Cập nhật câu trả lời
+                        existingAnswer.IsCorrect = newAnswer.IsCorrect;  // Cập nhật đúng/sai câu trả lời
+
+                        await _answerRepository.UpdateAnswer(existingAnswer);
+                    }
+                }
+                else
+                {
+                    // Nếu câu trả lời không tồn tại, thêm mới
+                    newAnswer.QuestionID = id;  // Đảm bảo rằng câu trả lời mới thuộc về câu hỏi hiện tại
+                    newAnswer.Id = 0;
+
+                    // Kiểm tra thêm câu trả lời mới
+                    Console.WriteLine($"Creating new answer for QuestionID {id} with IsCorrect: {newAnswer.IsCorrect}");
+
+                    await _answerRepository.CreateAnswer(newAnswer);
+                }
+            }
+
+
+            return Ok(new
+            {
+                EC = 0,
+                EM = "Update answers success",
+                DT = newAnswers
             });
         }
+
 
 
 
@@ -370,8 +401,8 @@ namespace ToeicWeb.ExamService.ExamService.Controllers
     {
         public int PartID { get; set; }
         public string Text { get; set; }
-        public IFormFile image { get; set; }
-        public IFormFile audio { get; set; }
+        public IFormFile? image { get; set; }
+        public IFormFile? audio { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public int AnswerCounts { get; set; }

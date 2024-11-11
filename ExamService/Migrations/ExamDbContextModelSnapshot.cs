@@ -44,6 +44,15 @@ namespace ExamService.Migrations
                     b.HasIndex("QuestionID");
 
                     b.ToTable("Answers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = -1,
+                            IsCorrect = false,
+                            QuestionID = -1,
+                            Text = "He is eating"
+                        });
                 });
 
             modelBuilder.Entity("ToeicWeb.ExamService.ExamService.Models.History", b =>
@@ -141,6 +150,18 @@ namespace ExamService.Migrations
                     b.HasIndex("TestID");
 
                     b.ToTable("Parts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = -1,
+                            CreatedAt = new DateTime(2024, 11, 11, 14, 22, 50, 151, DateTimeKind.Local).AddTicks(1595),
+                            Description = "null",
+                            Name = "Part null",
+                            Number = 1,
+                            TestID = -1,
+                            UpdatedAt = new DateTime(2024, 11, 11, 14, 22, 50, 151, DateTimeKind.Local).AddTicks(1597)
+                        });
                 });
 
             modelBuilder.Entity("ToeicWeb.ExamService.ExamService.Models.Question", b =>
@@ -184,6 +205,17 @@ namespace ExamService.Migrations
                     b.HasIndex("PartID");
 
                     b.ToTable("Questions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = -1,
+                            AnswerCounts = 4,
+                            CreatedAt = new DateTime(2024, 11, 11, 14, 22, 50, 151, DateTimeKind.Local).AddTicks(1615),
+                            PartID = -1,
+                            Text = "What is he doing?",
+                            UpdatedAt = new DateTime(2024, 11, 11, 14, 22, 50, 151, DateTimeKind.Local).AddTicks(1616)
+                        });
                 });
 
             modelBuilder.Entity("ToeicWeb.ExamService.ExamService.Models.Test", b =>
@@ -218,6 +250,18 @@ namespace ExamService.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tests");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = -1,
+                            CreatedAt = new DateTime(2024, 11, 11, 14, 22, 50, 151, DateTimeKind.Local).AddTicks(1480),
+                            Description = "null",
+                            Difficulty = "Easy",
+                            Duration = 60,
+                            Name = "Test null",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("ToeicWeb.ExamService.ExamService.Models.UserAnswer", b =>

@@ -25,7 +25,7 @@ FROM base AS final
 WORKDIR /app
 
 # Sao chép thư mục chứa SQL scripts vào thư mục trong container
-COPY ./ExamService/Data /app/Data
+COPY ./ExamService/ExamService/Data /app/Data
 
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "ExamService.dll"]
