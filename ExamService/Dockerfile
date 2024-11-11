@@ -1,4 +1,4 @@
-﻿# This stage is used when running from VS in fast mode (Default for Debug configuration)
+# This stage is used when running from VS in fast mode (Default for Debug configuration)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
@@ -24,8 +24,12 @@ RUN dotnet publish "./ExamService.csproj" -c $BUILD_CONFIGURATION -o /app/publis
 FROM base AS final
 WORKDIR /app
 
+# Tạo thư mục Data trước khi sao chép
+RUN mkdir -p /app/Data
+
 # Sao chép thư mục chứa SQL scripts vào thư mục trong container
 COPY ./ExamService/ExamService/Data /app/Data
 
 COPY --from=publish /app/publish .
+
 ENTRYPOINT ["dotnet", "ExamService.dll"]
